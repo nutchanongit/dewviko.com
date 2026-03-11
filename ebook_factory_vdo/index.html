@@ -226,19 +226,28 @@
       background: var(--bg-hover);
     }
 
-    .problem-card .problem-label {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #FF3B30;
-      margin-bottom: 12px;
-      letter-spacing: 0.02em;
+    .problem-card .icon-wrap {
+      width: 48px;
+      height: 48px;
+      background: var(--green-dim);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .problem-card .icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      color: var(--green);
     }
 
     .problem-card h3 {
       font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: 8px;
-      color: #FF3B30;
+      color: var(--text);
     }
 
     .problem-card p {
@@ -961,22 +970,30 @@
       <h2 class="headline reveal">ทำไมคนที่อยากใช้ AI ทำวิดิโอ<br>ส่วนใหญ่...<span class="accent">ยังทำไม่ได้สักที?</span></h2>
       <div class="problem-grid">
         <div class="problem-card reveal reveal-delay-1">
-          <div class="problem-label">พลาดที่ 1</div>
+          <div class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
           <h3>อยากทำคลิปเยอะ แต่เวลาไม่มี</h3>
           <p>นั่งถ่าย นั่งตัด นั่งแก้ทีละคลิป สุดท้ายได้สัปดาห์ละ 1-2 คลิป แถมหมดแรงก่อน</p>
         </div>
         <div class="problem-card reveal reveal-delay-2">
-          <div class="problem-label">พลาดที่ 2</div>
+          <div class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.6 2.7a10 10 0 1 0 5.7 5.7"/><circle cx="12" cy="12" r="2"/><path d="M13.4 10.6 19 5"/></svg>
+          </div>
           <h3>รู้จัก AI Tools เป็นตัวๆ แต่ต่อกันไม่ได้</h3>
           <p>เล่น ElevenLabs เป็น เล่น Heygen เป็น แต่พอจะต่อเป็นระบบ Automation จริงๆ ไม่รู้จะเริ่มยังไง</p>
         </div>
         <div class="problem-card reveal reveal-delay-3">
-          <div class="problem-label">พลาดที่ 3</div>
+          <div class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2.5"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+          </div>
           <h3>จ้างคนทำก็แพง ทำเองก็ช้า</h3>
           <p>จ้างฟรีแลนซ์ทีก็หลักพัน-หลักหมื่น แต่ถ้าทำเอง ใช้เวลาเป็นวันกว่าจะได้คลิปเดียว</p>
         </div>
         <div class="problem-card reveal reveal-delay-4">
-          <div class="problem-label">พลาดที่ 4</div>
+          <div class="icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M10 15 8 9l6 3-4 3Z"/></svg>
+          </div>
           <h3>ลองแล้วแต่คลิปออกมาดูไม่ได้</h3>
           <p>ใช้ AI ทำวิดิโอแล้ว แต่ปรับแต่งไม่ได้ตามใจ คุณภาพยังไม่ถึงระดับที่กล้าเอาไปใช้จริง</p>
         </div>
