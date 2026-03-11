@@ -899,6 +899,10 @@
     .factory-icon .flow-arrows .arrow svg { width: 18px; height: 18px; color: var(--text-muted); }
 
     /* ===== CHECKOUT POPUP (popup window, no CSS needed) ===== */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
   </style>
 </head>
 <body>
@@ -1107,7 +1111,7 @@
         <div class="author-info">
           <h2 class="headline">คนเขียน<span class="accent">คือใคร?</span></h2>
           <p class="subheadline">Dew — เจ้าของเพจ Dewvikoe ดิววิโกะ คอนเทนต์ AI ยอดรวม 600,000+ วิว และ 6,000+ แชร์</p>
-          <p class="subheadline" style="margin-top: 12px;">เคยทำระบบผลิตวิดิโอ AI ให้ลูกค้าจริง แบบ Done-for-you ตอนนี้เอาทุกอย่างที่รู้มาเขียนเป็น Ebook ให้เพื่อนๆ ทำเองได้ ไม่ต้องจ้างใคร</p>
+          <p class="subheadline" style="margin-top: 12px;">เคยทำระบบผลิตวิดิโอ AI ให้ลูกค้าจริง ทำให้ตั้งแต่ต้นจนจบ ตอนนี้เอาทุกอย่างที่รู้มาเขียนเป็น Ebook ให้เพื่อนๆ ทำเองได้ ไม่ต้องจ้างใคร</p>
           <div style="margin-top: 24px;">
             <img src="img/ViewStat.png" alt="สถิติยอดวิว 600,000+ และ 6,000+ แชร์" loading="lazy" style="width: 100%; max-width: 480px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
           </div>
@@ -1120,7 +1124,7 @@
   <section class="section" id="testimonials">
     <div class="container">
       <h2 class="headline text-center reveal">ผลงานจริงจาก<span class="accent">ระบบนี้</span></h2>
-      <p class="portfolio-subtitle reveal">เคยรับทำให้ลูกค้าจริง แบบ Done-for-you — ได้วิดิโอลงทุกวัน ทุกชั่วโมง ตามใจลูกค้าเลย<br>ตอนนี้เอาระบบเดียวกันมาเขียนเป็น Ebook ให้เพื่อนๆ ทำเองได้</p>
+      <p class="portfolio-subtitle reveal">เคยรับทำให้ลูกค้าจริง ตั้งแต่ต้นจนจบ — ได้วิดิโอลงทุกวัน ทุกชั่วโมง ตามใจลูกค้าเลย<br>ตอนนี้เอาระบบเดียวกันมาเขียนเป็น Ebook ให้เพื่อนๆ ทำเองได้</p>
 
       <div class="portfolio-grid" style="justify-content: center;">
 
@@ -1220,27 +1224,27 @@
       <h2 class="headline text-center reveal">Pre-order <span class="accent">ราคาพิเศษ</span></h2>
       <div class="pricing-grid">
         <div class="pricing-card reveal" style="width: 100%;">
-          <div class="pricing-badge">
+          <div class="pricing-badge" style="font-size: 0.85rem; padding: 8px 16px; background: rgba(0,214,50,0.15); animation: pulse 2s infinite;">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.288L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.288Z"/></svg>
-            Pre-order
+            ลดพิเศษ Preorder
           </div>
           <div class="price">
-            <span class="currency">฿</span>450
+            <span class="currency">฿</span>420
             <span class="original-price">990 บาท</span>
           </div>
-          <div class="price-note">ประหยัด 540 บาท</div>
+          <div class="price-note">ประหยัด 570 บาท — ลดกว่า 57%</div>
           <ul class="pricing-features">
             <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ebook ครบทุก Chapter</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> อัพเดทเนื้อหาใน Google Drive</li>
             <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bonus: Claude x n8n</li>
           </ul>
           <a href="#" onclick="openCheckout(event)" class="btn">
-            Pre-order 450 บาท
+            Preorder 420 บาท
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
           <div class="limit-badge">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
-            รับเพียง 20 คนแรก
+            รับเพียง 30 คนแรก
           </div>
         </div>
       </div>
@@ -1255,8 +1259,8 @@
         ทุกวันที่ผ่านไปโดยไม่มีระบบ คือเวลาที่เพื่อนๆ เสียไปกับการทำซ้ำสิ่งเดิม<br>
         คู่มือนี้จะพาเพื่อนๆ สร้างโรงงานวิดิโอของตัวเอง ตั้งแต่ศูนย์
       </p>
-      <p class="price-highlight reveal">Pre-order วันนี้ 450 บาท <span style="text-decoration: line-through; color: var(--text-muted); font-weight: 400;">(ปกติ 990 บาท)</span></p>
-      <p class="limit-text reveal">รับเพียง 20 คนแรกเท่านั้น</p>
+      <p class="price-highlight reveal">Preorder วันนี้ 420 บาท <span style="text-decoration: line-through; color: var(--text-muted); font-weight: 400;">(ปกติ 990 บาท)</span></p>
+      <p class="limit-text reveal">รับเพียง 30 คนแรกเท่านั้น</p>
       <a href="#" onclick="openCheckout(event)" class="btn reveal">
         สร้างโรงงานวิดิโอของเพื่อนๆ เลย
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
