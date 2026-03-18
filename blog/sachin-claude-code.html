@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- แก้ title, description ตรงนี้ -->
+  <title>คลิปนี้ดีจนไม่อยากแชร์ — dewviko</title>
+  <meta name="description" content="คลิปนี้ดีจนไม่อยากแชร์เลย มันเปิดโลกผมมากๆ อีก หนึ่งคลิป 😂 ความเจ๋งของคลิปนี้คือ จากที่ผมเคยคิดว่า Claude Code เป็นเครื่องมือสำหรับเขียนโค้ดเท่าน...">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2D6B2D; --green-light: #3A8A3A; --mint: #EEFBEE;
+      --white: #FFFFFF; --off-white: #F8F9FA; --black: #000000;
+      --dark-gray: #333333; --med-gray: #6B7280; --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif; --radius: 12px; --max-w: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark-gray); background: var(--white); line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-back { color: var(--med-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--green); }
+
+    /* ARTICLE */
+    .article-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 120px 24px 40px;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .article-tag { background: var(--mint); color: var(--green); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .article-date { font-size: 0.85rem; color: var(--med-gray); }
+    .article-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--black); line-height: 1.35; margin-bottom: 16px;
+    }
+    .article-header p.lead {
+      font-size: 1.1rem; color: var(--med-gray); line-height: 1.8;
+    }
+
+    .article-body {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px;
+    }
+    .article-body h2 {
+      font-size: 1.5rem; font-weight: 800; color: var(--black); margin: 48px 0 16px;
+      padding-left: 16px; border-left: 4px solid var(--green);
+    }
+    .article-body h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--black); margin: 32px 0 12px;
+    }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote {
+      background: var(--mint); border-left: 4px solid var(--green);
+      padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 24px 0; font-weight: 500;
+    }
+    .article-body code {
+      background: var(--off-white); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;
+    }
+    .article-body pre {
+      background: #1a1a1a; color: #e0e0e0; padding: 24px; border-radius: var(--radius);
+      overflow-x: auto; margin: 24px 0; font-size: 0.9rem; line-height: 1.6;
+    }
+    .article-body img {
+      max-width: 100%; border-radius: var(--radius); margin: 24px 0;
+    }
+
+    /* AUTHOR */
+    .author-box {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px;
+    }
+    .author-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 24px; background: var(--off-white); border-radius: var(--radius);
+    }
+    .author-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+    .author-name { font-weight: 800; color: var(--black); font-size: 1rem; }
+    .author-bio { font-size: 0.85rem; color: var(--med-gray); }
+
+    /* FOOTER */
+    .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .article-header { padding-top: 100px; }
+    }
+  </style>
+  <meta property="og:title" content="คลิปนี้ดีจนไม่อยากแชร์">
+  <meta property="og:description" content="คลิปนี้ดีจนไม่อยากแชร์เลย มันเปิดโลกผมมากๆ อีก หนึ่งคลิป 😂 ความเจ๋งของคลิปนี้คือ จากที่ผมเคยคิดว่า Claude Code เป็นเครื่องมือสำหรับเขียนโค้ดเท่าน...">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dewviko.com/blog/sachin-claude-code.html">
+  </head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <a href="/blog/" class="nav-back">&larr; กลับหน้า Blog</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-meta">
+      <!-- แก้ tag และวันที่ -->
+      <span class="article-tag">Claude AI</span>
+    <span class="article-tag">AI Code</span>
+      <span class="article-date">7 มีนาคม 2569</span>
+    </div>
+    <!-- แก้ชื่อบทความ -->
+    <h1>คลิปนี้ดีจนไม่อยากแชร์</h1>
+    <p class="lead">คลิปนี้ดีจนไม่อยากแชร์เลย มันเปิดโลกผมมากๆ อีก หนึ่งคลิป 😂 ความเจ๋งของคลิปนี้คือ จากที่ผมเคยคิดว่า Claude Code เป็นเครื่องมือสำหรับเขียนโค้ดเท่าน...</p>
+  </header>
+
+  <!-- ARTICLE BODY — เขียนเนื้อหาตรงนี้ -->
+  <article class="article-body">
+
+    <p>คลิปนี้ดีจนไม่อยากแชร์เลย มันเปิดโลกผมมากๆ อีก หนึ่งคลิป 😂</p>
+<p>ความเจ๋งของคลิปนี้คือ</p>
+<p>จากที่ผมเคยคิดว่า Claude Code เป็นเครื่องมือสำหรับเขียนโค้ดเท่านั้น</p>
+<p>แต่จริงๆ แล้วมันไม่ใช่</p>
+<p>เพราะ ล่าสุดดิวพึ่งไปดู Use Case การใช้ Claude Code</p>
+<p>สำหรับงานอื่นๆ ที่ไม่ใช่ Coding มาอย่างงาน Product Management</p>
+<p>สอนโดย คุณ Sechin Rekhi</p>
+<p>ประวัติของเขาคร่าวๆ คือ</p>
+<p>เคยสร้าง LinkedIn Sales Navigator ที่ทำรายได้เกินพันล้านดอลลาร์</p>
+<p>เคยเป็นผู้บริหารที่ Microsoft</p>
+<p>ตอนนี้รันสตาร์ทอัพของตัวเองชื่อ NoteJoy</p>
+<p>ปกติคนทั่วไปใช้ AI ก็จะแค่ถามตอบ</p>
+<p>อย่างมาก ก็เขียนโค้ดให้หน่อย</p>
+<p>แต่ Sechin เขาใช้ AI ทำงานแทนคนแทบจะทั้งทีม</p>
+<p>เขาใช้ Claude Code ทำงานเป็นระบบมาก</p>
+<p>ดูแล้วผมอยากเอามาประยุกต์ใช้ตามเลย</p>
+<p>ข้างล่างนี้ผมจะยกตัวอย่าง โชว์Workflow การใช้ AI</p>
+<p>ของเขามาให้ดูแบบละเอียดเลย</p>
+<p>────────────────────────────</p>
+<p>งาน: สั่ง AI วิจารณ์ Product</p>
+<p>สิ่งที่เขาสร้างเตรียม</p>
+<p>ไว้ก่อนที่จะสั่งให้ AI</p>
+<p>ทำงานนี้ได้เก่งประกอบด้วย 3 ส่วน</p>
+<h2>ไฟล์รายละเอียด Product Strategy (งานที่จะให้ai เข้ามาวิเคราะห์)</h2>
+<p>เขาเขียนเป็น markdown file เก็บไว้ในโฟลเดอร์ projects</p>
+<p>เช่น my_product.md</p>
+<p>ใน ไฟล์นี้จะมีหัวข้อที่เล่าเกี่ยวกับ รายละเอียดโปรดักษ์ ที่เขาทำ ประมาณนี้คับ</p>
+<ul>
+<li>Product ทำอะไร</li>
+<li>Problem ที่จะแก้</li>
+<li>Target Audience</li>
+<li>Value Proposition</li>
+<li>Business Model</li>
+<li>Strategic Differentiation</li>
+</ul>
+<h2>knowledge</h2>
+<p>เป็นFolder เก็บ Best Practice Framework</p>
+<p>ที่เขาใช้ในการวาง Strategy โปรดักษ์จากประสบการณ์เขา เช่น</p>
+<ul>
+<li>what-great-strategy-looks-like.md</li>
+<li>great-value-proposition.md</li>
+<li>great-target-audience.md</li>
+<li>great-strategic-differentiation.md</li>
+</ul>
+<h2>skill.md</h2>
+<p>ไฟล์ข้อความที่บอก AI ว่า งานนี้ทำยังไง จะมีลักษณะประมาณนี้ครับ</p>
+<p>แบ่งเป็น 3 ส่วน</p>
+<p>| 1. Front Matter (ป้ายชื่อ)</p>
+<p>|    ---</p>
+<p>|    name: ชื่อ skill</p>
+<p>|    description: ทำอะไร</p>
+<p>|    ---</p>
+<p>|  2. Goal (เป้าหมาย)</p>
+<p>|  บอกว่างานนี้ต้องการอะไร โทนแบบไหน</p>
+<p>|</p>
+<p>|  3. Workflow (ขั้นตอน)</p>
+<p>|   Step 1  ทำอะไร ...</p>
+<p>|   Step 2  ทำอะไร ...</p>
+<p>|   Step 3  ทำอะไร ...</p>
+<p>|   Step 4  บันทึกผลลัพธ์</p>
+<h2>ภาพรวมโฟลเดอร์</h2>
+<p>เขาใช้ VS CODE ในการโชว์ไฟล์โฟลว์เดอร์ที่เขาวางระบบไว้ทั้งหมด</p>
+<p>เพื่อให้เห็นภาพรวมของไฟล์ได้ง่ายๆ</p>
+<p>จากนั้นเปิด Command Line เพื่อสั่งงาน</p>
+<p>ภาพรวมโฟลเดอร์เป็นประมาณนี้ครับ</p>
+<p>product-hub/                ← โฟลเดอร์หลักของโปรเจกต์</p>
+<p>│</p>
+<p>├── .claude/skills/                             ← เก็บ skill ทั้งหมด</p>
+<p>│   └── critique-product-strategy/    ←skill วิจารณ์</p>
+<p>│       ├── skill.md</p>
+<p>│       └── knowledge/</p>
+<p>│           ├── what-great-strategy-looks-like.md</p>
+<p>│           ├── great-value-proposition.md</p>
+<p>│           ├── great-target-audience.md</p>
+<p>│           ├── great-differentiation.md</p>
+<p>│           ├── great-business-model.md</p>
+<p>│           └── great-go-to-market.md</p>
+<p>│</p>
+<p>└── projects/</p>
+<p>└── my_product.md            ← ตัวที่จะโดนวิจารณ์</p>
+<h2>การสั่ง Claude Code ทำงานนี้</h2>
+<p>พอทุกอย่างพร้อมแล้ว เขาสั่ง Claude Code ทำงานแบบนี้ครับ</p>
+<p>/skill critique-product-strategy @projects/my_product.md</p>
+<p>แปลเป็นภาษาคนคือ จงใช้ Skill วิจารณ์กลยุทธ์ของโปรดักษ์ เพื่อวิจารณ์โปรดักษ์ my_product</p>
+<p>แบบนี้ AI จะทำงานได้ตรงตาม Best Practice ของเขา</p>
+<p>ไม่มั่ว ไม่ตอบกลางๆ เหมือน มี Specialist มาทำงานให้เลย</p>
+<p>────────────────────────────</p>
+<h2>สรุปแบบดิววิโกะ</h2>
+<p>ไม่รู้คนอื่นอาจจะเฉยๆ นะ แต่ผมรู้สึกว้าวมากๆ</p>
+<p>ระดับโลก การใช้งาน AI ของเขา ทำเป็นระบบมาก</p>
+<p>พอจัดทุกอย่างเป็นระบบ</p>
+<p>AI ก็จะทำงานได้ง่ายขึ้นเลยครับ</p>
+<p>คนใช้งาน claude code ก็จะสั่งใช้งานได้ง่ายขึ้น</p>
+<p>จริงๆ มันมีอีกหลาย Use Case เลยที่เขาโชว์ในคลิป</p>
+<p>อันนี้แค่งานนึงเท่านั้น</p>
+<p>ถ้าใครอยากให้ผมเอา Use Case อื่น</p>
+<p>ของ คุณ Sechin มาสรุปให้ฟัง</p>
+<p>คอมเมนท์ไว้ว่า  "เอาอีก"</p>
+<p>ถ้าคอมเมนท์ เกิน 10 คอมเมนท์</p>
+<p>เดียวผมทำสรุป Part ต่อไปให้ครับ</p>
+<p>ส่วนใครอยากไปดูคลิปเต็ม ลิงค์ใต้คอมเมนท์เลยครับ คลิปยาว 1 ชั่วโมง</p>
+<p>เรียนแบบจุกๆ</p>
+<p>Dewviko</p>
+
+
+    <p><a href="https://www.facebook.com/permalink.php?story_fbid=pfbid0axaL1o2fbmvFSZYnnLk2pALzbCUKgGaSKmWivQhAZtAPcWmHD4tUX7PqMxiFmhM3l&id=61584440807076" target="_blank">ดูโพสต์เดิมบน Facebook</a></p>
+
+    <p><strong>Dewviko</strong></p>
+
+  </article>
+
+  <!-- AUTHOR BOX -->
+  <div class="author-box">
+    <div class="author-inner">
+      <img src="/ebook_factory_vdo/img/myimg2.png" alt="Dew" class="author-img">
+      <div>
+        <div class="author-name">Dew — dewviko</div>
+        <div class="author-bio">AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 <a href="/">dewviko</a>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

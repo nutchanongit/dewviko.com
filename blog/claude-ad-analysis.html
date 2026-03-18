@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ใช้ Claude ช่วยวิเคราะห์โฆษณาคู่แข่ง — dewviko</title>
+  <meta name="description" content="ไม่ต้องจ้าง Consult หรือเรียนยิงแอดแล้ว ใช้ Claude Cowork กับ skill competitive-ads-extractor วิเคราะห์ ads คู่แข่งจาก Facebook Ad Library ได้เลย">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:title" content="ใช้ Claude ช่วยวิเคราะห์โฆษณาคู่แข่ง">
+  <meta property="og:description" content="ไม่ต้องจ้าง Consult ยิงแอดแล้ว ใช้ Claude Cowork วิเคราะห์ ads คู่แข่งได้เลย">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dewviko.com/blog/claude-ad-analysis.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2D6B2D; --green-light: #3A8A3A; --mint: #EEFBEE;
+      --white: #FFFFFF; --off-white: #F8F9FA; --black: #000000;
+      --dark-gray: #333333; --med-gray: #6B7280; --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif; --radius: 12px; --max-w: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark-gray); background: var(--white); line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-back { color: var(--med-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--green); }
+
+    .article-header { max-width: var(--max-w); margin: 0 auto; padding: 120px 24px 40px; }
+    .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .article-tag { background: var(--mint); color: var(--green); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .article-date { font-size: 0.85rem; color: var(--med-gray); }
+    .article-header h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--black); line-height: 1.35; margin-bottom: 16px; }
+    .article-header p.lead { font-size: 1.1rem; color: var(--med-gray); line-height: 1.8; }
+
+    .article-body { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px; }
+    .article-body h2 { font-size: 1.5rem; font-weight: 800; color: var(--black); margin: 48px 0 16px; padding-left: 16px; border-left: 4px solid var(--green); }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote { background: var(--mint); border-left: 4px solid var(--green); padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0; margin: 24px 0; font-weight: 500; }
+
+    .article-cta { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px; }
+    .cta-box { background: var(--off-white); border: 1px solid var(--light-gray); border-radius: var(--radius); padding: 32px; text-align: center; }
+    .cta-box h3 { font-size: 1.15rem; font-weight: 800; color: var(--black); margin-bottom: 8px; }
+    .cta-box p { font-size: 0.9rem; color: var(--med-gray); margin-bottom: 20px; }
+    .cta-box a { display: inline-block; background: var(--green); color: var(--white); padding: 12px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+    .cta-box a:hover { background: var(--green-light); }
+
+    .fb-link { display: inline-flex; align-items: center; gap: 8px; background: var(--off-white); border: 1px solid var(--light-gray); padding: 12px 20px; border-radius: var(--radius); text-decoration: none; color: var(--dark-gray); font-weight: 600; font-size: 0.9rem; margin: 24px 0; transition: all 0.2s; }
+    .fb-link:hover { border-color: var(--green); background: var(--mint); }
+    .fb-link svg { width: 20px; height: 20px; fill: #1877F2; }
+
+    .author-box { max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px; }
+    .author-inner { display: flex; align-items: center; gap: 20px; padding: 24px; background: var(--off-white); border-radius: var(--radius); }
+    .author-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+    .author-name { font-weight: 800; color: var(--black); font-size: 1rem; }
+    .author-bio { font-size: 0.85rem; color: var(--med-gray); }
+
+    .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 768px) { .article-header { padding-top: 100px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <a href="/blog/" class="nav-back">&larr; Blog</a>
+    </div>
+  </nav>
+
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="article-tag">Claude AI</span>
+      <span class="article-date">15 มีนาคม 2026</span>
+    </div>
+    <h1>ใช้ Claude ช่วยวิเคราะห์โฆษณาคู่แข่ง แทนจ้าง Consult ยิงแอด</h1>
+    <p class="lead">Claude Cowork มี skill ที่เปิด browser จริง ดึงข้อมูล ads คู่แข่งจาก Facebook Ad Library แล้ววิเคราะห์ให้ว่า keyword ไหน work ไม่ต้องจ้างใครมาทำ</p>
+  </header>
+
+  <article class="article-body">
+
+    <img src="img/claude-ad-analysis.png" alt="ผมปรึกษา Claude ให้ช่วยยิงแอด — Competitor Ad Analysis" style="width:100%;border-radius:12px;margin-bottom:32px;">
+
+    <p>เมื่อก่อนเวลาจะยิงแอด เราอาจจะต้องเสียเงินไปซื้อคอร์สยิง ads เพื่อหาสูตรยิงแอด หรือไปค้นหา keyword ที่มัน work กับโปรดักษ์เรา</p>
+
+    <p>แต่ตอนนี้ กำแพงนี้ได้พังลงแล้ว เพราะเราสามารถใช้ Claude Cowork ช่วย Consult วิธีการยิงแอดให้เราได้ โดยใช้ skill ตัวนึงที่ชื่อว่า <strong>competitive-ads-extractor</strong></p>
+
+    <h2>มันทำอะไรได้บ้าง</h2>
+
+    <p>ฟังก์ชันหลักคือ ดึงข้อมูล ads ของคู่แข่งจาก Ad Library แล้วช่วยวิเคราะห์ว่า keyword ไหน work โดยจะเปิด browser จริงเพื่อหาข้อมูลให้เลย</p>
+
+    <p>โดยมันจะไปค้นหาใน:</p>
+    <ul>
+      <li>Facebook Ad Library</li>
+      <li>TikTok Creative Center</li>
+    </ul>
+
+    <p>สิ่งที่ได้ออกมาจากการใช้ skill นี้:</p>
+    <ul>
+      <li>ข้อความโฆษณาที่คู่แข่งใช้ พร้อมวิเคราะห์อันไหนใช้เยอะ</li>
+      <li>Painpoint ของลูกค้าที่คู่แข่งมักใช้</li>
+      <li>Gap ระหว่างเรากับคู่แข่งในเรื่องโปรดักษ์ที่จะเอาไปยิงแอด</li>
+    </ul>
+
+    <p>นอกจากนี้เรายังสร้าง Custom skill ให้มันสรุป present มาเป็น PowerPoint ได้อีกด้วย</p>
+
+    <h2>วิธีดาวน์โหลด</h2>
+
+    <p>สามารถโหลด skill นี้ได้จาก Skills Marketplace เลย ชื่อว่า <strong>competitive-ads-extractor</strong></p>
+
+    <p>โหลดเสร็จ เข้า Claude Desktop ไปกดปุ่ม import skill ลงได้เลย</p>
+
+    <blockquote>
+      Use case นี้เป็นตัวอย่างที่ดีว่า AI ไม่ได้แค่ช่วยเขียนข้อความ แต่สามารถ research ข้อมูลจริงจาก internet แล้ววิเคราะห์ให้เราได้
+    </blockquote>
+
+    <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid0YbjbMrM4MNKxnjkRLP9NKur26Gy642mBt8hoC5GaU48vavai8d4Q3fR2c1dV1kZHl&id=61584440807076" target="_blank" class="fb-link">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      ดูโพสต้นฉบับบน Facebook
+    </a>
+
+    <p><strong>Dewviko</strong></p>
+  </article>
+
+  <div class="article-cta">
+    <div class="cta-box">
+      <h3>อยากให้ AI ช่วยงานจริงๆ?</h3>
+      <p>ปรึกษาดิวได้เลย บอกปัญหา แล้วผมจะหาทางช่วย</p>
+      <a href="mailto:dewviko@gmail.com">ส่ง Email มาคุยกัน</a>
+    </div>
+  </div>
+
+  <div class="author-box">
+    <div class="author-inner">
+      <img src="/ebook_factory_vdo/img/myimg2.png" alt="Dew" class="author-img">
+      <div>
+        <div class="author-name">Dew — dewviko</div>
+        <div class="author-bio">AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 <a href="/">dewviko</a>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

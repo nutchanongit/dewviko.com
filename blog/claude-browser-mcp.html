@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- แก้ title, description ตรงนี้ -->
+  <title>Claude ไปเล่น Google แทน — dewviko</title>
+  <meta name="description" content="จะเป็นยังไง ถ้าเราเอา Claude ไปเล่น google แทนเรา Use case นี้มาจากคุณ Sachin Rekhi คนที่สร้าง LinkedIn Sales Navigator ผลิตภัณฑ์ที่ทำรายได้เกินพ...">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2D6B2D; --green-light: #3A8A3A; --mint: #EEFBEE;
+      --white: #FFFFFF; --off-white: #F8F9FA; --black: #000000;
+      --dark-gray: #333333; --med-gray: #6B7280; --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif; --radius: 12px; --max-w: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark-gray); background: var(--white); line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-back { color: var(--med-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--green); }
+
+    /* ARTICLE */
+    .article-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 120px 24px 40px;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .article-tag { background: var(--mint); color: var(--green); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .article-date { font-size: 0.85rem; color: var(--med-gray); }
+    .article-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--black); line-height: 1.35; margin-bottom: 16px;
+    }
+    .article-header p.lead {
+      font-size: 1.1rem; color: var(--med-gray); line-height: 1.8;
+    }
+
+    .article-body {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px;
+    }
+    .article-body h2 {
+      font-size: 1.5rem; font-weight: 800; color: var(--black); margin: 48px 0 16px;
+      padding-left: 16px; border-left: 4px solid var(--green);
+    }
+    .article-body h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--black); margin: 32px 0 12px;
+    }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote {
+      background: var(--mint); border-left: 4px solid var(--green);
+      padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 24px 0; font-weight: 500;
+    }
+    .article-body code {
+      background: var(--off-white); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;
+    }
+    .article-body pre {
+      background: #1a1a1a; color: #e0e0e0; padding: 24px; border-radius: var(--radius);
+      overflow-x: auto; margin: 24px 0; font-size: 0.9rem; line-height: 1.6;
+    }
+    .article-body img {
+      max-width: 100%; border-radius: var(--radius); margin: 24px 0;
+    }
+
+    /* AUTHOR */
+    .author-box {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px;
+    }
+    .author-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 24px; background: var(--off-white); border-radius: var(--radius);
+    }
+    .author-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+    .author-name { font-weight: 800; color: var(--black); font-size: 1rem; }
+    .author-bio { font-size: 0.85rem; color: var(--med-gray); }
+
+    /* FOOTER */
+    .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .article-header { padding-top: 100px; }
+    }
+  </style>
+  <meta property="og:title" content="Claude ไปเล่น Google แทน">
+  <meta property="og:description" content="จะเป็นยังไง ถ้าเราเอา Claude ไปเล่น google แทนเรา Use case นี้มาจากคุณ Sachin Rekhi คนที่สร้าง LinkedIn Sales Navigator ผลิตภัณฑ์ที่ทำรายได้เกินพ...">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dewviko.com/blog/claude-browser-mcp.html">
+  </head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <a href="/blog/" class="nav-back">&larr; กลับหน้า Blog</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-meta">
+      <!-- แก้ tag และวันที่ -->
+      <span class="article-tag">Claude AI</span>
+    <span class="article-tag">Browser Automation</span>
+      <span class="article-date">8 มีนาคม 2569</span>
+    </div>
+    <!-- แก้ชื่อบทความ -->
+    <h1>Claude ไปเล่น Google แทน</h1>
+    <p class="lead">จะเป็นยังไง ถ้าเราเอา Claude ไปเล่น google แทนเรา Use case นี้มาจากคุณ Sachin Rekhi คนที่สร้าง LinkedIn Sales Navigator ผลิตภัณฑ์ที่ทำรายได้เกินพ...</p>
+  </header>
+
+  <!-- ARTICLE BODY — เขียนเนื้อหาตรงนี้ -->
+  <article class="article-body">
+
+    <p>จะเป็นยังไง ถ้าเราเอา Claude ไปเล่น google แทนเรา</p>
+<p>Use case นี้มาจากคุณ Sachin Rekhi</p>
+<p>คนที่สร้าง LinkedIn Sales Navigator</p>
+<p>ผลิตภัณฑ์ที่ทำรายได้เกินพันล้านดอลลาร์</p>
+<p>เขาเล่าว่าเคยถาม ChatGPT ว่า</p>
+<p>"ราคาคู่แข่งตอนนี้เท่าไหร่"</p>
+<p>มันตอบมามั่วบ่อยหลายครั้ง</p>
+<p>Deep Research ก็เหมือนกัน ค้นหาระเอียดยิบ แต่ราคาก็ยังผิด</p>
+<p>จนเขาเจอวิธีนี้ใน Claude Code</p>
+<h2>สิ่งที่เขาทำคืออะไร</h2>
+<p>คุณ Sachin ใช้ Claude Code คู่กับ Search Agent MCP</p>
+<p>โดยการทำงานคือ เขาสั่ง Claude Code คือคำสั่งเดียว</p>
+<p>จากนั้น Claude Code จะแปลงร่างเป็นนักสืบ</p>
+<p>ไปค้นเว็บให้เราเอง ตามที่เราเซ็ตไว้ใน Skill.md</p>
+<p>การทำงานของ Claude Code เขาจะทำงานแบบนี้หลังสั่ง</p>
+<p>ไปที่หน้า pricing เว็บ สินค้า ของตัวเขาก่อน</p>
+<p>อ่านราคาทุกแพลน ทุก feature</p>
+<p>เสร็จแล้วก็ไปเปิดเว็บคู่แข่งเจ้าที่ 1</p>
+<p>อ่านราคา อ่าน feature</p>
+<p>แล้วก็ไปเจ้าที่ 2, 3, 4 วนจนครบทุกเจ้า</p>
+<p>เขาไม่ได้แตะเบราว์เซอร์เลยสักครั้ง</p>
+<p>มันทำเองหมด</p>
+<p>สุดท้ายมันสรุปทุกอย่างกลับมาให้เป็นตารางเปรียบเทียบ</p>
+<p>พร้อมคอมเม้นต์วิเคราะห์ด้วย เช่น</p>
+<p>ใครถูกสุด ใครแพงสุด ใคร free plan ดีสุด</p>
+<h2>ทำไมวิธีนี้ถึงแม่นกว่า</h2>
+<p>ChatGPT หรือ Deep Research เวลาเราสั่ง</p>
+<p>มันจะค้นเว็บหลายๆเว็บไซต์</p>
+<p>บางทีอาจจะเป็นเว็บ User รีวิวเอง</p>
+<p>ซึ่งอาจจะเป็นราคาเก่า</p>
+<p>แต่วิธีนี้ Sachin สามารถ ได้ราคาตรงเป้ะ และอัพเดทเลย</p>
+<p>เพราะ ใน Skill.md</p>
+<p>เขาระบุไว้ชัดเลยให้ Search เว็บอะไรบ้าง</p>
+<p>ดังนั้นสิ่งที่ได้ไม่มั่วแน่ๆ</p>
+<p>บางคนอาจจะสงสัย เอ้า</p>
+<p>ก็ส่งลิงค์ให้ ChatGPT อ่านก็ได้นิ และ</p>
+<p>propmt บังคับอ่านแค่เว็บที่ส่ง</p>
+<p>คำตอบ คือได้ครับ</p>
+<p>แต่แบบนี้เราต้องมาคอยกรอก เว็บตลอด</p>
+<p>ลำบากต่อการเรียนกใช้งานครั้งหน้า</p>
+<p>ทำแบบ Sachin คือ เราอยากทำ Task นี้เพื่อเช็คครั้งหน้า</p>
+<p>ก็ไม่ต้อง Propmt ใหม่เรื่อยๆ</p>
+<p>แถมเซตติ้ง ให้อัพเดทรายสัปดาห์ได้ด้วย</p>
+<h2>แล้วเราจะทำตามเขาได้ยังไง ติดตั้งไรบ้าง</h2>
+<p>ปกติ Claude Code มันอ่านได้แค่ไฟล์ในเครื่องเรา</p>
+<p>มันเปิดเว็บไม่ได้</p>
+<p>แต่ถ้าเราติดตั้งสิ่งที่เรียกว่า Browser MCP เพิ่มเข้าไป</p>
+<p>มันก็จะมีมือไปกด google แทนเราได้</p>
+<p>MCP คือ อะไร?</p>
+<p>พูดง่ายๆ MCP คือ สายเชื่อมต่อ</p>
+<p>ที่ให้ AI ไปใช้งานเครื่องมือภายนอกได้</p>
+<p>อยากให้ AI ใช้ Notion ก็ต่อ Notion MCP</p>
+<p>อยากให้ AI ใช้ n8n ก็ต่อ n8n MCP</p>
+<p>อยากให้ AI เปิดเบราว์เซอร์ ก็ต่อ Browser MCP</p>
+<p>สำหรับ use case นี้ ต้องต่อ Browser MCP</p>
+<p>ซึ่งตัวยอดนิยมที่คนใช้กันเยอะมีประมาณนี้</p>
+<p>Puppeteer MCP</p>
+<p>Playwright MCP</p>
+<p>อันไหนก็ได้ แต่ Feature อาจต่างกันนิดหน่อยครับ</p>
+<p>วิธีติดตั้ง Puppeteer MCP</p>
+<p>เปิด Terminal พิมพ์แค่นี้</p>
+<p>claude mcp add puppeteer -- npx -y @modelcontextprotocol/server-puppeteer</p>
+<p>แค่บรรทัดเดียว เสร็จ</p>
+<p>อยากเช็คว่าติดตั้งสำเร็จไหม</p>
+<p>เปิด Claude Code แล้วพิมพ์ /mcp</p>
+<p>ถ้าขึ้น  puppeteer connected = พร้อมใช้งาน</p>
+<p>อย่าลืมติดตั้ง Node.Js ด้วยนะครับ บางเครื่องอาจจะยังไม่มี</p>
+<p>พิมพ์เช็ค ใน Command Line แบบนี้ครับ</p>
+<p>node --version</p>
+<p>ถ้ามันตอบเลขเวอร์ชั่นมาแสดงว่ามีแล้ว</p>
+<p>(Node.Js คือเปรียบเสมือนเครื่องยนต์ ที่ใช้ทำงานคู่กับ puppeteer)</p>
+<p>หลังจากติดตั้งทุกอย่างเรียบร้อย</p>
+<p>เรามาสร้าง Skill กันต่อครับ</p>
+<p>ใครอ่านโพสก่อนหน้าจะรู้แล้วว่า Skill คือ คู่มือที่เราเขียนให้ AI ว่าต้องทำอะไร</p>
+<p>สำหรับ use case นี้ ข้างใน skill บอกแค่ว่า</p>
+<ul>
+<li>ไปเปิดเว็บไหนบ้าง (ใส่ URL pricing ของเราและคู่แข่ง)</li>
+<li>ดึงข้อมูลอะไร (ชื่อแพลน ราคา feature)</li>
+<li>สรุปออกมาเป็นอะไร (ตารางเปรียบเทียบ + คอมเม้นต์)</li>
+<li>บันทึกไว้ที่ไหน (ที่่ต้องการบันทึก อาจจะเป้น Update-Pricing-folder)</li>
+</ul>
+<p>เขียนเป็นภาษาคนปกติเลย ไม่ต้องเขียนโค้ด</p>
+<p>พอทุกอย่างพร้อม ก็แค่สั่ง</p>
+<p>แล้ว Claude Code ก็ไปทำให้เองทั้งหมด</p>
+<p>ใครเอาไปใช้ได้บ้าง</p>
+<p>ขายของออนไลน์ => เช็คราคาคู่แข่งบนเน็ต</p>
+<p>(ไม่แน่ใจ Shopee/Lazada ได้ไหม เห็นเพื่อนบางคนบอก ทักมาบอกว่าระบบป้องกันบอทเยอะ)</p>
+<p>freelance  => เปรียบเทียบราคา freelancer ในตลาดสำหรับ Service เดียวกัน</p>
+<p>ขายคอร์ส => ดูราคาคอร์สคู่แข่งที่สอนเรื่องเดียวกัน</p>
+<p>สรุป</p>
+<p>Claude Code + Browser MCP</p>
+<p>= AI ที่เปิดเว็บเองได้ อ่านข้อมูลเอง สรุปให้เอง</p>
+<p>ใครอยากรู้ภาพรวม การจัดการงานด้วย Claude Code</p>
+<p>เบื้องต้นแบบเขา เขาทำเป็นระบบมาก</p>
+<p>ลองอ่านโพสเก่าๆ ในเพจได้เลย</p>
+<p>Part ถัดไป จะเล่า use case ที่ล้ำกว่านี้อีก</p>
+<p>คุณ Sachin เอาไฟล์เสียง interview ลูกค้า 10 คน</p>
+<p>โยนให้ Claude Code</p>
+<p>มันถอดเสียง สรุป หา pattern ให้เอง</p>
+<p>จากงาน 2-3 วัน เหลือแค่สั่งครั้งเดียว</p>
+<p>ใครอยากอ่าน คอมเม้นว่า "เอาอีก"</p>
+<p>ครบ 10 คอมเม้น ดิวมาเล่าต่อเลย 555</p>
+<p>Dewviko</p>
+
+
+    <p><a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02g9ZG7tYGuxft6Ng3RjeCfswjxxJfn9QU5r9p9vZUYPjXyWRtfjjumGztNpgNtpfil&id=61584440807076" target="_blank">ดูโพสต์เดิมบน Facebook</a></p>
+
+    <p><strong>Dewviko</strong></p>
+
+  </article>
+
+  <!-- AUTHOR BOX -->
+  <div class="author-box">
+    <div class="author-inner">
+      <img src="/ebook_factory_vdo/img/myimg2.png" alt="Dew" class="author-img">
+      <div>
+        <div class="author-name">Dew — dewviko</div>
+        <div class="author-bio">AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 <a href="/">dewviko</a>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

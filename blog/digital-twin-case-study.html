@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- แก้ title, description ตรงนี้ -->
+  <title>Digital Twin ตัวเอง — dewviko</title>
+  <meta name="description" content="วันนี้ ดิว มี Case Study ของ การทำ Digital twin ตัวเอง ด้วย ai มาทำคอนเทนท์ดึง Traffic ของนักธุรกิจหญิงคนนึงมาเล่าให้ฟัง [1] ประวัติเบื้องต้น เธอ...">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2D6B2D; --green-light: #3A8A3A; --mint: #EEFBEE;
+      --white: #FFFFFF; --off-white: #F8F9FA; --black: #000000;
+      --dark-gray: #333333; --med-gray: #6B7280; --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif; --radius: 12px; --max-w: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark-gray); background: var(--white); line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-back { color: var(--med-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--green); }
+
+    /* ARTICLE */
+    .article-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 120px 24px 40px;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .article-tag { background: var(--mint); color: var(--green); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .article-date { font-size: 0.85rem; color: var(--med-gray); }
+    .article-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--black); line-height: 1.35; margin-bottom: 16px;
+    }
+    .article-header p.lead {
+      font-size: 1.1rem; color: var(--med-gray); line-height: 1.8;
+    }
+
+    .article-body {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px;
+    }
+    .article-body h2 {
+      font-size: 1.5rem; font-weight: 800; color: var(--black); margin: 48px 0 16px;
+      padding-left: 16px; border-left: 4px solid var(--green);
+    }
+    .article-body h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--black); margin: 32px 0 12px;
+    }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote {
+      background: var(--mint); border-left: 4px solid var(--green);
+      padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 24px 0; font-weight: 500;
+    }
+    .article-body code {
+      background: var(--off-white); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;
+    }
+    .article-body pre {
+      background: #1a1a1a; color: #e0e0e0; padding: 24px; border-radius: var(--radius);
+      overflow-x: auto; margin: 24px 0; font-size: 0.9rem; line-height: 1.6;
+    }
+    .article-body img {
+      max-width: 100%; border-radius: var(--radius); margin: 24px 0;
+    }
+
+    /* AUTHOR */
+    .author-box {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px;
+    }
+    .author-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 24px; background: var(--off-white); border-radius: var(--radius);
+    }
+    .author-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+    .author-name { font-weight: 800; color: var(--black); font-size: 1rem; }
+    .author-bio { font-size: 0.85rem; color: var(--med-gray); }
+
+    /* FOOTER */
+    .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .article-header { padding-top: 100px; }
+    }
+  </style>
+  <meta property="og:title" content="Digital Twin ตัวเอง">
+  <meta property="og:description" content="วันนี้ ดิว มี Case Study ของ การทำ Digital twin ตัวเอง ด้วย ai มาทำคอนเทนท์ดึง Traffic ของนักธุรกิจหญิงคนนึงมาเล่าให้ฟัง [1] ประวัติเบื้องต้น เธอ...">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dewviko.com/blog/digital-twin-case-study.html">
+  </head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <a href="/blog/" class="nav-back">&larr; กลับหน้า Blog</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-meta">
+      <!-- แก้ tag และวันที่ -->
+      <span class="article-tag">AI Avatar</span>
+    <span class="article-tag">Digital Twin</span>
+      <span class="article-date">5 มีนาคม 2569</span>
+    </div>
+    <!-- แก้ชื่อบทความ -->
+    <h1>Digital Twin ตัวเอง</h1>
+    <p class="lead">วันนี้ ดิว มี Case Study ของ การทำ Digital twin ตัวเอง ด้วย ai มาทำคอนเทนท์ดึง Traffic ของนักธุรกิจหญิงคนนึงมาเล่าให้ฟัง [1] ประวัติเบื้องต้น เธอ...</p>
+  </header>
+
+  <!-- ARTICLE BODY — เขียนเนื้อหาตรงนี้ -->
+  <article class="article-body">
+
+    <p>วันนี้ ดิว มี Case Study ของ การทำ Digital twin ตัวเอง</p>
+<p>ด้วย ai มาทำคอนเทนท์ดึง Traffic</p>
+<p>ของนักธุรกิจหญิงคนนึงมาเล่าให้ฟัง</p>
+<h2>ประวัติเบื้องต้น</h2>
+<p>เธอคนนี้ชื่อ Julia McCoy</p>
+<p>เป็น CEO ของFirst Movers</p>
+<p>(บริษัท Consult ด้าน AI Marketing ใน อเมริกา)</p>
+<p>Julia เล่าว่า เขาเคยป่วย 6 เดือน</p>
+<p>แล้วหมอ ให้เลือกระหว่าง ธุรกิจ กับ สุขภาพ</p>
+<p>หากเลือกสุขภาพ เขาต้องหยุดทำธุรกิจ หยุดทำคอนเทนท์</p>
+<p>ซึ่งหมายความว่า ระหว่างรักษาตัว</p>
+<p>ธุรกิจของเขาจะชะงัก และไม่เติบโต เพราะไม่มี Content</p>
+<p>แต่แทนที่ จูเลีย จะเลือกอย่างใดอย่างนึง เขาเลือก</p>
+<p>สุขภาพ และ ใช้ AI ช่วยทำคอนเทนท์</p>
+<p>โดยเขาใช้เวลาแค่ 30 นาที ต่อวัน ในการทำคอนเทนท์</p>
+<p>ไม่ต้องอัดคลิป ไม่ต้องตั้งกล้อง</p>
+<p>แค่ใช้  AI ให้เป็น</p>
+<h2>โคลนตัวเองยังไง ?</h2>
+<p>เธอใช้ Heygen สร้าง ร่างโคลนของเธอขึ้นมา</p>
+<p>เพื่อใช้เป็นตัวแทนเขา</p>
+<p>ไม่ต้องแต่งตัว ไม่ต้องตั้งกล้อง</p>
+<p>ใช้โคลน และ โยน Script เนื้อหาที่อยากจะเล่า</p>
+<p>เพื่อให้ Clone พูดให้เลย</p>
+<p>วิธีการโคลนตัวเอง ใน Heygen คือ</p>
+<p>เตรียม Training Video</p>
+<p>ถ่ายวิดีโอตัวเอง 3-5 คลิป คลิปละ 2-5 นาที</p>
+<p>ส่วนเรื่องเสียงพากษ์ เทอใช้ Elevenlabs ในการโคลนเสียงเธอ</p>
+<p>โดยใช้ API Elevenlabs ต่อเข้ากับ Heygen</p>
+<p>โดยจะอัดคลิปเสียงยาว ประมาณ 1 ชั่วโมง</p>
+<p>เพื่อใช้เทรน ai ให้โคลนเสียงตามเธอ</p>
+<h2>เนื้อหาในคลิปเป็นยังไง</h2>
+<p>เขาใช้ Claude เรียบเรียงเนื้อหาและ Script ให้ทั้งหมด</p>
+<p>โดยสร้าง Claude Project</p>
+<p>เพื่อเทรน Claude ในการสร้าง สคริป ให้เป็นสไตล์เขา</p>
+<p>ส่วนเรื่องวิธีการเทรน</p>
+<p>ตรงนี้เธอไม่ได้เล่า รายละเอียดมากนัก</p>
+<p>แต่ผมคาดการณ์ว่า เธอคงจะทำวิธีประมาณนี้ คือ</p>
+<p>เอา คลิปยูทูปเก่าๆ มาถอด เสียงเป็นข้อความ</p>
+<p>จากนั้น รวบรวมข้อความที่ ถอด แยกไว้ แต่ละคลิป</p>
+<p>จากนั้น ส่งให้ Claude เข้าไปเรียนรู้</p>
+<p>สไตล์การเล่าเรื่องแต่ละคลิปของเธอ</p>
+<p>จากนั้นเธอจะ Research มาว่าอยากทำคอนเทนท์เรื่องอะไร</p>
+<p>แล้วส่งให้ CLaude สร้าง Script ให้เล่าเรื่องสไตล์แบบเธอ</p>
+<p>ส่วนเรื่องการตัดต่อ เธอจ้าง Producer ตัดต่อคลิปให้เธอ</p>
+<p>ไม่ได้ใช้ AI ตัดต่อให้ เพราะ AI ตัดต่อคลิปยังไม่เก่งมาก</p>
+<p>เรื่อง AI ตัดต่อ ดิวขอเสริมนิดนึง</p>
+<p>จากที่ผมลองเล่น AI ตัดต่อ บางตัวเช่น Submagic</p>
+<p>Submagic ตัดต่อคลิปสั้น ได้ในระดับปานกลาง</p>
+<p>ยังไม่ดีมาก แต่ยังไงก็ประหยัดเงินจ้างตัดต่อได้เยอะครับ</p>
+<p>หากใครสนใจ ลองเล่นดูได้ น่าจะดีขึ้นเรื่อยๆ</p>
+<h2>ผลลัพธ์หลัง Julia ใช้ AI Clone</h2>
+<p>เธอได้บอกในคลิปว่าผลลัพธ์ได้ดังนี้ครับ</p>
+<ul>
+<li>ยอดวิวสูงขึ้น 3.8 เท่า</li>
+<li>Average watch time 8 นาที</li>
+<li>3 วัน ปล่อยได้ 6 วิดีโอ จากเดิมทำได้คลิปเดียวใช้เวลาหลายวัน</li>
+<li>จากทำงาน 25 ชั่วโมง/สัปดาห์ เหลือ 30 นาที/วัน</li>
+<li>ต้นทุนทำคลิปทั้งหมด 2400 บาท / เดือน (ถูกกว่าจ้างทีมงาน แถมยัง ออกคลิปได้เยอะอีก)</li>
+</ul>
+<h2>สรุปแบบดิววิโกะ</h2>
+<p>Ai Digital Twin กำลังเป็น เทรนด์ Marketing</p>
+<p>ที่มาใหม่เลย เหมาะมาก</p>
+<p>หากธุรกิจใคร ไม่อยากจ้างทีม Production แพงๆ</p>
+<p>แต่อยากมีคอนเทนท์ ลงเพื่อสร้าง Lead</p>
+<p>มาสู่ Service และ Product ของธุรกิจคุณ</p>
+<p>และหากใคร สนใจเรื่อง AI Avatar</p>
+<p>คอมเมนท์ว่า AI Avatar ไว้</p>
+<p>ผมกำลังเตรียมคลิป เพื่อแชร์วิธีทำ AI Digital twin เบื้องต้นให้อยู่</p>
+<p>สำหรับคนที่คอมเมนท์ ผมจะส่งให้เลยเมื่อเสร็จแล้ว</p>
+<p>Dewviko</p>
+<p>#chatgpt  #Claude #Dewviko</p>
+
+
+    <p><a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02FfVrwqMuAUGaJ7ezA1LCXgbkwa6TmAeaCi2mjEmTmpv1VRsvwdxxB7RiZbLa7w8yl&id=61584440807076" target="_blank">ดูโพสต์เดิมบน Facebook</a></p>
+
+    <p><strong>Dewviko</strong></p>
+
+  </article>
+
+  <!-- AUTHOR BOX -->
+  <div class="author-box">
+    <div class="author-inner">
+      <img src="/ebook_factory_vdo/img/myimg2.png" alt="Dew" class="author-img">
+      <div>
+        <div class="author-name">Dew — dewviko</div>
+        <div class="author-bio">AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 <a href="/">dewviko</a>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

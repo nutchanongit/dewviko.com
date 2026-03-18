@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- แก้ title, description ตรงนี้ -->
+  <title>Claude Code ถอดเสียง Interview — dewviko</title>
+  <meta name="description" content="Use Case นี้ล้ำสุดตั้งแต่ที่ดูมา สั่ง Claude Code ทีเดียว เพื่อถอดเสียง interview ลูกค้า 10 คน AI สรุป หา insight ให้เอง และหา Pattern บางอย่างจา...">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2D6B2D; --green-light: #3A8A3A; --mint: #EEFBEE;
+      --white: #FFFFFF; --off-white: #F8F9FA; --black: #000000;
+      --dark-gray: #333333; --med-gray: #6B7280; --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif; --radius: 12px; --max-w: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark-gray); background: var(--white); line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-back { color: var(--med-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--green); }
+
+    /* ARTICLE */
+    .article-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 120px 24px 40px;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .article-tag { background: var(--mint); color: var(--green); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .article-date { font-size: 0.85rem; color: var(--med-gray); }
+    .article-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--black); line-height: 1.35; margin-bottom: 16px;
+    }
+    .article-header p.lead {
+      font-size: 1.1rem; color: var(--med-gray); line-height: 1.8;
+    }
+
+    .article-body {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px;
+    }
+    .article-body h2 {
+      font-size: 1.5rem; font-weight: 800; color: var(--black); margin: 48px 0 16px;
+      padding-left: 16px; border-left: 4px solid var(--green);
+    }
+    .article-body h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--black); margin: 32px 0 12px;
+    }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote {
+      background: var(--mint); border-left: 4px solid var(--green);
+      padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 24px 0; font-weight: 500;
+    }
+    .article-body code {
+      background: var(--off-white); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;
+    }
+    .article-body pre {
+      background: #1a1a1a; color: #e0e0e0; padding: 24px; border-radius: var(--radius);
+      overflow-x: auto; margin: 24px 0; font-size: 0.9rem; line-height: 1.6;
+    }
+    .article-body img {
+      max-width: 100%; border-radius: var(--radius); margin: 24px 0;
+    }
+
+    /* AUTHOR */
+    .author-box {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px;
+    }
+    .author-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 24px; background: var(--off-white); border-radius: var(--radius);
+    }
+    .author-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+    .author-name { font-weight: 800; color: var(--black); font-size: 1rem; }
+    .author-bio { font-size: 0.85rem; color: var(--med-gray); }
+
+    /* FOOTER */
+    .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .article-header { padding-top: 100px; }
+    }
+  </style>
+  <meta property="og:title" content="Claude Code ถอดเสียง Interview">
+  <meta property="og:description" content="Use Case นี้ล้ำสุดตั้งแต่ที่ดูมา สั่ง Claude Code ทีเดียว เพื่อถอดเสียง interview ลูกค้า 10 คน AI สรุป หา insight ให้เอง และหา Pattern บางอย่างจา...">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dewviko.com/blog/claude-whisper-interview.html">
+  </head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <a href="/blog/" class="nav-back">&larr; กลับหน้า Blog</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-meta">
+      <!-- แก้ tag และวันที่ -->
+      <span class="article-tag">Claude AI</span>
+    <span class="article-tag">Whisper</span>
+      <span class="article-date">8 มีนาคม 2569</span>
+    </div>
+    <!-- แก้ชื่อบทความ -->
+    <h1>Claude Code ถอดเสียง Interview</h1>
+    <p class="lead">Use Case นี้ล้ำสุดตั้งแต่ที่ดูมา สั่ง Claude Code ทีเดียว เพื่อถอดเสียง interview ลูกค้า 10 คน AI สรุป หา insight ให้เอง และหา Pattern บางอย่างจา...</p>
+  </header>
+
+  <!-- ARTICLE BODY — เขียนเนื้อหาตรงนี้ -->
+  <article class="article-body">
+
+    <p>Use Case นี้ล้ำสุดตั้งแต่ที่ดูมา</p>
+<p>สั่ง Claude Code ทีเดียว</p>
+<p>เพื่อถอดเสียง interview ลูกค้า 10 คน</p>
+<p>AI สรุป หา insight ให้เอง</p>
+<p>และหา Pattern บางอย่างจาก การสัมภาษณ์ลูกค้า</p>
+<p>ปกติงานแบบนี้ ถ้าให้คนทำเอง นานแน่ๆ</p>
+<p>เพราะต้องมาไล่ฟังทีละคน</p>
+<p>แถมให้คนทำ บางคนลักไก่ ขี้เกียจ ฟังทั้งหมดด้วยซ้ำ 555</p>
+<p>แอบ make interview, painpoint ลูกค้า เองได้</p>
+<p>แต่ปัญหานี้หมดไปละ เพราะ เราให้</p>
+<p>Claude ฟังลูกค้าบ่น ละเก็บ Insight ได้แล้วเย้</p>
+<h2>workflow การทำงานนี้ของคุณ Sachin</h2>
+<p>Step 1 => อ่านไฟล์วิดีโอจาก Zoom</p>
+<p>Step 2 => ถอดเสียงเป็นข้อความ</p>
+<p>ขั้นตอนนี้เขาใช้เครื่องมือชื่อ Whisper</p>
+<p>(เป็นตัวแปลง เสียงเป็นข้อความ)</p>
+<p>Step 3 => สรุปแต่ละ interview ตาม template ที่กำหนดไว้</p>
+<p>ไม่ใช่สรุปมัวๆ แต่สรุปตามหัวข้อที่เราอยากได้ เช่น</p>
+<ul>
+<li>สัมภาษณ์ใคร บริษัทอะไร</li>
+<li>Key takeaway</li>
+<li>Pain point ที่เจอ</li>
+<li>Quote คำพูดจริงๆ ของลูกค้า</li>
+</ul>
+<p>Step 4 => หา pattern ข้ามทุก interview</p>
+<p>คือให้ Claude มันเอาสรุปจาก 10 คน มาวิเคราะห์ว่า</p>
+<p>pain point ไหนถูกพูดถึงบ่อยที่สุด</p>
+<p>เช่น สินค้า xx ฟีเจอร์ yy ห๋วยแตก</p>
+<p>ถูกพูดถึง 9 จาก 10 คน</p>
+<p>แล้วมันก็เรียงให้เลยว่า ปัญหาไหนสำคัญสุด</p>
+<p>พร้อม quote จากลูกค้าจริง</p>
+<p>อันนี้โกงมาก</p>
+<p>ถ้าคนทำเอง ม���นั่งฟัง และ เทียบคงยากมากๆ</p>
+<h2>ภาพรวมโครงสร้างโฟลเดอร์</h2>
+<p>skill อยู่ในนี้</p>
+<p>.claude/skills/summarize-customer-interviews/</p>
+<p>├── skill.md → คู่มือสั่งงาน (ขั้นตอน + วิธีสรุป)</p>
+<p>└── templates/</p>
+<p>├── interview-summary.md → template สรุปรายคน</p>
+<p>└── cross-interview-patterns.md → template หา pattern คน</p>
+<p>ไฟล์วิดีโอ interview อยู่ในนี้</p>
+<p>customer-interviews/</p>
+<p>├── company-a.mp4</p>
+<p>├── company-b.mp4</p>
+<p>└── company-c.mp4</p>
+<p>เวลาเรียกใช้งาน ก็สั่งประมาณนี้</p>
+<p>`/skill summarize-customer-interviews @customer-interviews/</p>
+<p>.`</p>
+<p>แปลเป็นภาษาคนว่า</p>
+<p>ใช้ skill สรุปการสัมภาษณ์ลูกค้า โดยจงไปใช้สกิลนี้ ที่ไฟล์ `customer-interviews`</p>
+<h2>Claude จะรู้ได้ไงต้องใช้ Whisper ถอดสคริป กับงานนี้</h2>
+<p>Claude Code + Whisper</p>
+<p>= AI ที่ฟังเสียงได้ สรุปได้ หา pattern ได้</p>
+<p>ประหยัดเวลามหาศาล</p>
+<p>และเป็น Task ที่คนน่าจะ ขี้เกียจทำที่สุดละ 555</p>
+<p>use case นี้ผมได้มาจากคุณ Sachin Rekhi เช่นเดิม</p>
+<p>คลิปเต็มใน Comment เลยครับ</p>
+<p>ใครลองเอาไปใช้แล้ว คอมเม้นมาเล่าให้ฟังด้วยนะคับ</p>
+<p>————————————————————————</p>
+<p>├── Front Matter (ป้ายชื่อ)</p>
+<p>│   → ชื่อ skill: summarize-customer-interviews</p>
+<p>│   → คำอธิบาย: ถอดเสียงและสรุป interview</p>
+<p>│</p>
+<p>├── Goal (เป้าหมาย)</p>
+<p>│   → ถอดเสียง</p>
+<p>│   → สรุปตาม template</p>
+<p>│   → หา pattern ข้ามทุก interview</p>
+<p>│</p>
+<p>├── Input (ข้อมูลที่รับเข้ามา)</p>
+<p>│   → โฟลเดอร์ที่มีไฟล์วิดีโอ interview</p>
+<p>│</p>
+<p>└── Workflow (ขั้นตอน)</p>
+<p>├── Step 1 → ใช้ Whisper ถอดเสียงเป็นข้อความ</p>
+<p>├── Step 2 → สรุปรายคน ตาม template</p>
+<p>├── Step 3 → หา pattern ข้ามทุกคน ตาม template</p>
+<p>└── Step 4 → บันทึกไฟล์ใน output/</p>
+<p>—————————————————————————</p>
+<h2>สรุปแบบดิววิโกะ</h2>
+<p>Claude Code + Whisper</p>
+<p>= AI ที่ฟังเสียงได้ สรุปได้ หา pattern ได้</p>
+<p>ไม่ใช่แค่ประหยัดเวลา</p>
+<p>แต่ทำสิ่งที่คนไม่มีทางทำด้วยมือ</p>
+<p>เพราะแพงเกินไป</p>
+<p>use case นี้ผมได้มาจากคุณ Sachin Rekhi เช่นเดิม</p>
+<p>ใครอยากดูคลิปเต็ม ใต้คอมเมนท์เลยครับ</p>
+<p>ใครลองเอาไปใช้แล้ว คอมเม้นมาเล่าให้ฟังด้วยนะคับ</p>
+<p>Dewviko</p>
+
+
+    <p><a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02MZmBDm4UqLkYZTFH8DJBEKofT6uVJiPkfTPq8KBH7gk1vEkWp2fP5Mr4oMa2MdKol&id=61584440807076" target="_blank">ดูโพสต์เดิมบน Facebook</a></p>
+
+    <p><strong>Dewviko</strong></p>
+
+  </article>
+
+  <!-- AUTHOR BOX -->
+  <div class="author-box">
+    <div class="author-inner">
+      <img src="/ebook_factory_vdo/img/myimg2.png" alt="Dew" class="author-img">
+      <div>
+        <div class="author-name">Dew — dewviko</div>
+        <div class="author-bio">AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 <a href="/">dewviko</a>. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
