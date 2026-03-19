@@ -1480,6 +1480,20 @@
   </footer>
 
   <script>
+    // SendFox form submit handler - show success message
+    document.querySelectorAll('.sendfox-form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent = 'กำลังส่ง...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          form.innerHTML = '<div style="padding:20px;text-align:center;font-weight:700;color:#2D6B2D;font-size:1.1rem;">สมัครเรียบร้อยแล้ว เช็คอีเมลเพื่อยืนยันนะคับ</div>';
+        }, 1500);
+      });
+    });
+
     // Nav scroll accent line
     const nav = document.querySelector('.nav');
     window.addEventListener('scroll', () => {
