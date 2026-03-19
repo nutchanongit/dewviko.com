@@ -126,7 +126,23 @@
 
     /* ===== SECTIONS ===== */
     .section {
-      padding: 100px 24px;
+      padding: 120px 24px;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
     }
 
     .container {
@@ -161,7 +177,7 @@
     /* ===== HERO ===== */
     .hero {
       padding: 140px 24px 80px;
-      background: var(--white);
+      background: radial-gradient(circle at 20% 50%, rgba(45,107,45,0.05) 0%, rgba(238,251,238,0.3) 30%, var(--white) 70%);
     }
 
     .hero .container {
@@ -172,11 +188,12 @@
     }
 
     .hero-text h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2.25rem, 6vw, 3.5rem);
       font-weight: 900;
       color: var(--black);
-      line-height: 1.25;
-      margin-bottom: 20px;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
     }
 
     .hero-text h1 span { color: var(--green); }
@@ -211,15 +228,28 @@
       color: var(--white);
     }
 
-    .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+    .btn-primary {
+      box-shadow: 0 4px 12px rgba(45,107,45,0.15);
+    }
+
+    .btn-primary:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(45,107,45,0.25);
+    }
 
     .btn-outline {
       background: transparent;
       color: var(--green);
       border: 2px solid var(--green);
+      transition: all 0.3s ease;
     }
 
-    .btn-outline:hover { background: var(--mint); }
+    .btn-outline:hover {
+      background: var(--mint);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(45,107,45,0.1);
+    }
 
     .hero-image {
       display: flex;
@@ -337,8 +367,8 @@
       background: var(--white);
       border: 1px solid var(--light-gray);
       border-radius: var(--radius);
-      padding: 36px 28px;
-      transition: all 0.3s;
+      padding: 40px 32px;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
       text-decoration: none;
       color: inherit;
       display: block;
@@ -346,20 +376,26 @@
 
     .service-card:hover {
       border-color: var(--green);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(45,107,45,0.08);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(45,107,45,0.12);
     }
 
     .service-icon {
-      width: 52px;
-      height: 52px;
+      width: 64px;
+      height: 64px;
       background: var(--mint);
-      border-radius: 12px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 20px;
+      font-size: 1.75rem;
+      margin-bottom: 24px;
+      transition: all 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+      background: var(--green);
+      color: var(--white);
     }
 
     .service-card h3 {
@@ -416,14 +452,14 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 24px;
+      padding: 16px 32px;
       background: var(--white);
       border-radius: var(--radius);
       border: 1px solid var(--light-gray);
     }
 
     .trusted-item img {
-      height: 48px;
+      height: 72px;
       width: auto;
       object-fit: contain;
     }
@@ -524,7 +560,7 @@
       background: var(--white);
       border-radius: var(--radius);
       overflow: hidden;
-      transition: all 0.3s;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
       text-decoration: none;
       color: inherit;
       display: block;
@@ -533,8 +569,8 @@
 
     .blog-card:hover {
       border-color: var(--green);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(45,107,45,0.1);
     }
 
     .blog-card-thumb {
@@ -746,6 +782,112 @@
     }
 
     .footer-social svg { width: 18px; height: 18px; }
+
+    /* ===== NAV SCROLL ACCENT ===== */
+    .nav.scrolled {
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+      z-index: -1;
+    }
+
+    .nav.scrolled::after {
+      transform: scaleX(1);
+      z-index: 1;
+    }
+
+    /* ===== SUBSCRIBE SECTION ===== */
+    .subscribe {
+      background: var(--white);
+    }
+
+    .subscribe-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--mint);
+      border: 2px solid var(--green);
+      border-radius: 16px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .subscribe-card h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+
+    .subscribe-card p {
+      font-size: 0.95rem;
+      color: var(--med-gray);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .subscribe-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .subscribe-form input {
+      padding: 14px 16px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      border: 1px solid var(--green);
+      border-radius: 8px;
+      background: var(--white);
+      color: var(--black);
+      transition: all 0.2s;
+    }
+
+    .subscribe-form input::placeholder {
+      color: var(--med-gray);
+    }
+
+    .subscribe-form input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(45,107,45,0.1);
+      border-color: var(--green);
+    }
+
+    .subscribe-form button {
+      padding: 14px 28px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .subscribe-form button:hover {
+      background: var(--green-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(45,107,45,0.2);
+    }
+
+    .subscribe-note {
+      font-size: 0.8rem;
+      color: var(--med-gray);
+      font-weight: 500;
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
@@ -1013,6 +1155,29 @@
     </div>
   </section>
 
+  <!-- SUBSCRIBE -->
+  <section class="section subscribe" id="subscribe">
+    <div class="container">
+      <div class="subscribe-card">
+        <h2>รับบทความ AI ใหม่ทุกสัปดาห์</h2>
+        <p>ส่งตรงถึงอีเมล ไม่พลาดทุกเรื่อง AI ที่ใช้ได้จริง</p>
+        <form class="subscribe-form sendfox-form" id="1yrxxy" action="https://sendfox.com/form/1yzk6w/1yrxxy" method="POST" data-async="true" data-recaptcha="true">
+          <!-- Replace REPLACE_WITH_FORM_ID and REPLACE_WITH_LIST_ID with your actual SendFox form ID and list ID -->
+          <input
+            type="email"
+            name="email"
+            placeholder="อีเมลของคุณ"
+            required
+            autocomplete="email"
+          />
+          <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
+          <button type="submit">สมัครรับบทความ</button>
+        </form>
+        <div class="subscribe-note">ไม่สแปม ยกเลิกได้ทุกเมื่อ</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA BANNER -->
   <section class="cta-banner">
     <div class="container">
@@ -1081,6 +1246,39 @@
       &copy; 2025 dewviko. All rights reserved.
     </div>
   </footer>
+
+  <script>
+    // Nav scroll accent line
+    const nav = document.querySelector('.nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Fade-in-up animation on scroll for cards
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe service cards, blog cards, and product cards
+    document.querySelectorAll('.service-card, .blog-card, .product-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+  <script src="https://cdn.sendfox.com/js/form.js" charset="utf-8"></script>
 
 </body>
 </html>
