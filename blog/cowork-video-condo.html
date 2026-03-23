@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ใช้ Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ Ken Burns สวยๆ — dewviko</title>
+  <meta name="description" content="ลองเอารูปทรัพย์จากเว็บขายคอนโดมาสร้างวิดิโอ Ken Burns ด้วย Claude Cowork + FFmpeg ได้ผลลัพธ์ดีเกินคาด พร้อมเปรียบเทียบ Cowork vs n8n ใช้ตัวไหนเมื่อไหร่">
+  <meta property="og:title" content="ใช้ Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ Ken Burns สวยๆ">
+  <meta property="og:description" content="ลองเอารูปทรัพย์จากเว็บขายคอนโดมาสร้างวิดิโอ Ken Burns ด้วย Claude Cowork + FFmpeg พร้อมเปรียบเทียบ Cowork vs n8n">
+  <meta property="og:image" content="https://dewviko.com/blog/img/cowork-video-condo.jpg">
+  <meta property="og:url" content="https://dewviko.com/blog/cowork-video-condo.html">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #2D6B2D; --green-light: #3A8A3A; --mint: #EEFBEE;
+      --white: #FFFFFF; --off-white: #F8F9FA; --black: #000000;
+      --dark-gray: #333333; --med-gray: #6B7280; --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif; --radius: 12px; --max-w: 760px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--dark-gray); background: var(--white); line-height: 1.9; -webkit-font-smoothing: antialiased; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--light-gray); }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-weight: 900; font-size: 1.25rem; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--green); }
+    .nav-back { color: var(--med-gray); text-decoration: none; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--green); }
+
+    /* ARTICLE */
+    .article-header {
+      max-width: var(--max-w); margin: 0 auto;
+      padding: 120px 24px 40px;
+    }
+    .article-meta {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 16px;
+    }
+    .article-tag { background: var(--mint); color: var(--green); padding: 4px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+    .article-date { font-size: 0.85rem; color: var(--med-gray); }
+    .article-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 900; color: var(--black); line-height: 1.35; margin-bottom: 16px;
+    }
+    .article-header p.lead {
+      font-size: 1.1rem; color: var(--med-gray); line-height: 1.8;
+    }
+
+    .article-body {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 80px;
+    }
+    .article-body h2 {
+      font-size: 1.5rem; font-weight: 800; color: var(--black); margin: 48px 0 16px;
+      padding-left: 16px; border-left: 4px solid var(--green);
+    }
+    .article-body h3 {
+      font-size: 1.15rem; font-weight: 700; color: var(--black); margin: 32px 0 12px;
+    }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote {
+      background: var(--mint); border-left: 4px solid var(--green);
+      padding: 20px 24px; border-radius: 0 var(--radius) var(--radius) 0;
+      margin: 24px 0; font-weight: 500;
+    }
+    .article-body code {
+      background: var(--off-white); padding: 2px 8px; border-radius: 4px; font-size: 0.9em;
+    }
+    .article-body pre {
+      background: #1a1a1a; color: #e0e0e0; padding: 24px; border-radius: var(--radius);
+      overflow-x: auto; margin: 24px 0; font-size: 0.9rem; line-height: 1.6;
+    }
+    .article-body img {
+      max-width: 100%; border-radius: var(--radius); margin: 24px 0;
+    }
+
+    /* SHARE BUTTONS */
+    .share-bar {
+      max-width: var(--max-w); margin: 40px auto 0; padding: 0 24px 40px;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    }
+    .share-label {
+      font-size: 0.85rem; font-weight: 600; color: var(--med-gray);
+    }
+    .share-buttons {
+      display: flex; gap: 12px;
+    }
+    .share-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--light-gray);
+      background: var(--white); color: var(--dark-gray); text-decoration: none;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .share-btn:hover {
+      border-color: var(--green); background: var(--mint);
+    }
+    .share-btn svg { width: 18px; height: 18px; }
+    .share-btn.facebook:hover { background: #1877F2; color: var(--white); border-color: #1877F2; }
+    .share-btn.twitter:hover { background: #000000; color: var(--white); border-color: #000000; }
+    .share-btn.copy:hover { background: var(--green); color: var(--white); border-color: var(--green); }
+
+    /* AUTHOR */
+    .author-box {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 60px;
+    }
+    .author-inner {
+      display: flex; align-items: center; gap: 20px;
+      padding: 24px; background: var(--off-white); border-radius: var(--radius);
+    }
+    .author-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; }
+    .author-name { font-weight: 800; color: var(--black); font-size: 1rem; }
+    .author-bio { font-size: 0.85rem; color: var(--med-gray); }
+
+    /* SUBSCRIBE SECTION */
+    .blog-subscribe {
+      max-width: var(--max-w); margin: 40px auto; padding: 0 24px 60px;
+    }
+    .subscribe-card-small {
+      background: var(--mint); border: 1px solid var(--green); border-radius: 12px;
+      padding: 28px; text-align: center;
+    }
+    .subscribe-card-small h3 {
+      font-size: 1.1rem; font-weight: 700; color: var(--black); margin-bottom: 8px;
+    }
+    .subscribe-card-small p {
+      font-size: 0.85rem; color: var(--med-gray); margin-bottom: 20px;
+    }
+    .subscribe-form-small {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .subscribe-form-small input {
+      padding: 10px 14px; font-family: var(--font); font-size: 0.9rem;
+      border: 1px solid var(--green); border-radius: 6px; background: var(--white);
+      color: var(--black);
+    }
+    .subscribe-form-small input:focus {
+      outline: none; box-shadow: 0 0 0 2px rgba(45,107,45,0.1);
+    }
+    .subscribe-form-small button {
+      padding: 10px 20px; font-family: var(--font); font-size: 0.9rem; font-weight: 700;
+      background: var(--green); color: var(--white); border: none; border-radius: 6px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .subscribe-form-small button:hover {
+      background: var(--green-light);
+    }
+    .subscribe-note-small {
+      font-size: 0.75rem; color: var(--med-gray); margin-top: 8px;
+    }
+
+    /* FB LINK */
+    .fb-original {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 24px 40px;
+    }
+    .fb-original a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--green); text-decoration: none; font-weight: 600; font-size: 0.9rem;
+    }
+    .fb-original a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    .footer { background: var(--black); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: var(--green); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .article-header { padding-top: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <a href="/blog/" class="nav-back">&larr; กลับหน้า Blog</a>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="article-tag">Claude AI</span>
+      <span class="article-date">22 มีนาคม 2026</span>
+    </div>
+    <h1>ใช้ Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ Ken Burns สวยๆ</h1>
+    <p class="lead">ลองเอารูปทรัพย์จากเว็บขายคอนโดมาสร้างวิดิโอด้วย Claude Cowork + FFmpeg กะจะลองเล่นๆ แต่มันทำได้ดีเฉยเลย พร้อมสรุปว่า Cowork กับ n8n ใช้ตัวไหนเมื่อไหร่</p>
+  </header>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <img src="img/cowork-video-condo.jpg" alt="ใช้ Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ">
+
+    <p>ผมเริ่มกลัว Cowork ละ 555</p>
+
+    <p>ล่าสุดผมลองเอา ภาพทรัพย์จากในเว็บขายคอนโด มาสร้างเป็นวิดิโอ กะจะลองเล่นๆ แต่มันทำได้ดีเฉยเลย</p>
+
+    <h2>วิธีการทำ</h2>
+
+    <p><strong>1) สร้าง Folder</strong></p>
+    <ul>
+      <li>เก็บรูปทรัพย์นั้นหลายๆ มุม</li>
+      <li>ไฟล์บอกรายละเอียดทรัพย์</li>
+    </ul>
+
+    <p><strong>2) เข้าไปที่ Cowork กดเลือกให้ Claude เข้าไปอ่านและทำงานได้ใน Folder นี้</strong></p>
+
+    <p><strong>3) Prompt บอก เช่น</strong></p>
+    <p>ต้องการนำภาพจาก Folder พวกนี้ มารวมเป็น Video Ken Burns หลายๆ มุม พร้อมใส่ Subtitle บอกรายละเอียด โดยไปอ่านจากไฟล์ รายละเอียด.txt โดยใช้ FFmpeg</p>
+
+    <p><strong>4) รอมันทำงาน รอรับวิดิโอ แค่นี้จบ</strong></p>
+
+    <h2>แล้วถ้าอยากทำระบบผลิตวิดิโออัตโนมัติล่ะ?</h2>
+
+    <p>แต่หากใครที่ต้องการทำระบบผลิตวิดิโออัตโนมัติ ที่ไม่ใช่แค่เอาภาพมาทำ Slideshow กับแค่ใส่ซับแบบนี้</p>
+
+    <p>คงจะต้องใช้ n8n อยู่ เพื่อเชื่อมต่อ API ของ AI ตัวอื่นๆ สำหรับ GenVDO โดยเฉพาะ ก่อน</p>
+
+    <p>เช่น</p>
+    <ul>
+      <li><strong>HeyGen</strong> => Clone Human</li>
+      <li><strong>ElevenLabs</strong> => Clone เสียง, สร้างเสียงพากย์</li>
+      <li><strong>Kling AI</strong> => Img to VDO</li>
+      <li><strong>VEO3</strong> => Text to VDO</li>
+    </ul>
+
+    <p>จากนั้นมาทำ workflow ใน n8n ให้ได้โรงงานผลิตวิดิโอตามที่ต้องการโดยเฉพาะ</p>
+
+    <h2>สรุปแบบดิววิโกะ</h2>
+
+    <p>Cowork น่ากลัวมาก และมันจะเก่งขึ้นเรื่อยๆ เมื่อก่อนงานแบบนี้ ผมยังใช้ n8n ทั้งหมด แต่ตอนนี้เริ่มแบ่งงานแบบนี้มาให้ Cowork บ้างแล้ว</p>
+
+    <blockquote>
+      <strong>สำหรับผม</strong><br>
+      n8n => งานที่ต้องการ workflow ชัดเจน ตรงไปตรงมา<br>
+      Claude => สำหรับงานวิเคราะห์เยอะๆ ซับซ้อนๆ อยากให้คิดได้หลายตลบแก้ปัญหาเองได้
+    </blockquote>
+
+    <p>แต่ก็ไม่รู้ ผมอาจจะคิดผิดก็ได้ อนาคต Claude อาจจะมาแทน n8n ได้หมดเลย</p>
+
+    <p><strong>Dewviko</strong></p>
+
+  </article>
+
+  <!-- FB ORIGINAL LINK -->
+  <div class="fb-original">
+    <a href="https://www.facebook.com/permalink.php?story_fbid=pfbid02AUxJeGXdVL63d9QkN7oXd59sCb9kFiqJgVTnv8fBxaGDtpMZS2rreMyFDmw63jA3l&id=61584440807076" target="_blank" rel="noopener">
+      <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      อ่านโพสต้นฉบับบน Facebook
+    </a>
+  </div>
+
+  <!-- SHARE BUTTONS -->
+  <div class="share-bar">
+    <span class="share-label">แชร์บทความนี้:</span>
+    <div class="share-buttons">
+      <a href="#" class="share-btn facebook" title="Share on Facebook" onclick="shareOnFacebook(); return false;">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="#" class="share-btn twitter" title="Share on Twitter/X" onclick="shareOnTwitter(); return false;">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 002.856-3.905 10.019 10.019 0 01-2.837.856c1.021-.612 1.804-1.582 2.173-2.723-.954.564-2.01.974-3.142 1.194-.901-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.06c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 1.751 1.124 3.821 1.776 6.037 1.776 7.229 0 11.024-5.99 11.024-11.176 0-.169-.003-.339-.01-.506 1.754-1.264 3.276-2.855 4.482-4.666z"/></svg>
+      </a>
+      <a href="#" class="share-btn copy" title="Copy link" onclick="copyLink(); return false;">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- SUBSCRIBE SECTION -->
+  <div class="blog-subscribe">
+    <div class="subscribe-card-small">
+      <h3>รับบทความ AI ใหม่ทุกสัปดาห์</h3>
+      <p>ส่งตรงถึงอีเมล ไม่พลาดทุกเรื่อง AI ที่ใช้ได้จริง</p>
+      <form class="subscribe-form-small sendfox-form" id="1yrxxy" action="https://sendfox.com/form/1yzk6w/1yrxxy" method="POST" data-async="true" data-recaptcha="false">
+        <input type="email" name="email" placeholder="อีเมลของคุณ" required autocomplete="email" />
+        <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
+        <button type="submit">สมัครรับบทความ</button>
+      </form>
+      <div class="subscribe-note-small">ไม่สแปม ยกเลิกได้ทุกเมื่อ</div>
+    </div>
+  </div>
+
+  <!-- AUTHOR BOX -->
+  <div class="author-box">
+    <div class="author-inner">
+      <img src="/ebook_factory_vdo/img/myimg2.png" alt="Dew" class="author-img">
+      <div>
+        <div class="author-name">Dew — dewviko</div>
+        <div class="author-bio">AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2025 <a href="/">dewviko</a>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.sendfox-form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        btn.textContent = 'กำลังส่ง...';
+        btn.disabled = true;
+        const formData = new FormData(form);
+        fetch(form.action, { method: 'POST', body: formData, mode: 'no-cors' })
+          .then(() => { form.innerHTML = '<div style="padding:20px;text-align:center;font-weight:700;color:#2D6B2D;font-size:1.1rem;">สมัครเรียบร้อยแล้ว เช็คอีเมลเพื่อยืนยันนะคับ</div>'; })
+          .catch(() => { form.innerHTML = '<div style="padding:20px;text-align:center;font-weight:700;color:#2D6B2D;font-size:1.1rem;">สมัครเรียบร้อยแล้ว เช็คอีเมลเพื่อยืนยันนะคับ</div>'; });
+      });
+    });
+
+    function shareOnFacebook() {
+      const url = window.location.href;
+      const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+      window.open(facebookShareUrl, 'facebook-share', 'width=600,height=400');
+    }
+
+    function shareOnTwitter() {
+      const url = window.location.href;
+      const title = document.querySelector('h1')?.textContent || 'Read this article';
+      const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
+      window.open(twitterShareUrl, 'twitter-share', 'width=600,height=400');
+    }
+
+    function copyLink() {
+      const url = window.location.href;
+      navigator.clipboard.writeText(url).then(() => {
+        const btn = event.target.closest('.copy');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<svg fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>';
+        setTimeout(() => {
+          btn.innerHTML = originalHTML;
+        }, 2000);
+      });
+    }
+  </script>
+  <script src="https://cdn.sendfox.com/js/form.js" charset="utf-8"></script>
+
+</body>
+</html>
