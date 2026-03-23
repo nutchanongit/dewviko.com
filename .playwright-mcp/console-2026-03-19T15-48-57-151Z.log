@@ -1,0 +1,2 @@
+[    1315ms] [WARNING] Statsig is not ready to log exposures, will retry in 1 seconds @ https://www.figma.com/webpack-artifacts/assets/community-b015a211a510746d.min.js.br:719
+[    3052ms] [WARNING] Specifying 'overflow: visible' on img, video and canvas tags may cause them to produce visual content outside of the element bounds. See https://github.com/WICG/view-transitions/blob/main/debugging_overflow_on_images.md for details. @ https://www.figma.com/community/search?resource_type=files&sort_by=relevancy&query=mobile+app+UI+kit&editor_type=figma:0
