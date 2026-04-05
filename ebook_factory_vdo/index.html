@@ -653,6 +653,22 @@
       line-height: 1.7;
     }
 
+    /* ===== VALUE STACK ===== */
+    .value-stack {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .value-row {
+      transition: background 0.2s ease;
+    }
+
+    .value-row:hover {
+      background: var(--bg-hover) !important;
+    }
+
     /* ===== PRICING ===== */
     .pricing-grid {
       display: flex;
@@ -912,14 +928,15 @@
     <div class="container">
       <div class="hero-left">
         <div class="hero-badge reveal">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>
-          Preorder เปิดแล้วนะ
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.288L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.288Z"/></svg>
+          เปิดขายแล้ว!
         </div>
         <h1 class="headline reveal">
           พาเพื่อนๆ สร้าง<span class="accent">โรงงานผลิตวิดิโอ</span>ด้วย AI ตั้งแต่ศูนย์
         </h1>
         <p class="subheadline reveal">
           ไม่ต้องถ่ายเอง ไม่ต้องตัดต่อ ไม่ต้องจ้างใคร<br>
+          Ebook + วิดิโอสอนทำจริง + Templates + Discord Community<br>
           ดิวจะพาทำระบบที่ผลิตวิดิโอให้เราเอง ตั้งแต่เขียนสคริปต์ จนโพสลง Social Media เลย
         </p>
         <a href="#" onclick="openCheckout(event)" class="btn reveal">
@@ -992,7 +1009,7 @@
         </div>
       </div>
       <div class="closing-line reveal">
-        ดิวเลยสร้าง <strong>"ระบบ"</strong> ที่ต่อทุกอย่างเข้าด้วยกันเป็นสายพาน แล้วเขียนเป็นคู่มือให้เพื่อนๆ ครับ
+        ดิวเลยสร้าง <strong>"ระบบ"</strong> ที่ต่อทุกอย่างเข้าด้วยกันเป็นสายพาน แล้วทำเป็นคู่มือ + วิดิโอสอน ให้เพื่อนๆ ทำตามได้เลยครับ
       </div>
       <div class="text-center reveal">
         <a href="#" onclick="openCheckout(event)" class="btn">
@@ -1046,55 +1063,51 @@
   <section class="section" id="flow">
     <div class="container">
       <h2 class="headline reveal">ในคู่มือมีอะไรบ้าง?<br>ดิวพาทำตั้งแต่ศูนย์ จนมี<span class="accent">โรงงานวิดิโอ</span>เลย</h2>
+      <p class="subheadline reveal" style="margin-bottom: 12px;">ทุก Workshop มี <strong style="color: var(--green);">Ebook + วิดิโอสอน + Template + n8n Workflow</strong> ให้ครบ</p>
       <div class="timeline">
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 1</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> พื้นฐาน Automation ด้วย n8n</h3>
-          <p>ต่อ Google Sheet, ต่อ API — เข้าใจหลักการ Automation ที่ใช้ได้จริง, และ เทคนิค AI ช่วยสร้างระบบ Automation มือใหม่ก็ทำได้</p>
+          <div class="chapter-num">Workshop 1</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> Script to Voice — เปลี่ยนสคริปต์เป็นเสียงพากย์</h3>
+          <p>สร้างเสียงพากย์จากข้อความ โคลนเสียงตัวเอง พร้อมต่อเข้าระบบ Automation ใน n8n</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 2</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg> โคลนเสียง หรือ สร้างเสียงพากษ์ใหม่ ด้วย AIs</h3>
-          <p>สร้างเสียงพากย์ของเพื่อนๆ เอง พร้อมต่อเข้าระบบ n8n</p>
+          <div class="chapter-num">Workshop 2.1</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg> Product Review Video — คลิปรีวิวสินค้าอัตโนมัติ</h3>
+          <p>ดึงข้อมูลสินค้าจาก Database แล้วให้ AI สร้างคลิปรีวิวให้เลย ลงได้ทุกวันไม่มีหมด</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 3</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg> สร้างวิดิโอ AI</h3>
-          <p>สร้างวิดิโอจากภาพ พร้อม Orchestration ครบจบใน n8n</p>
+          <div class="chapter-num">Workshop 2.2</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg> Logo & Text Overlay — แปะโลโก้ ข้อความลงคลิป</h3>
+          <p>ใส่โลโก้ ข้อความ เพลงพื้นหลัง ลงในวิดิโอแบบอัตโนมัติ ทำครั้งเดียวใช้ได้ทุกคลิป</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 4</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> AI Avatar และ AI Clone</h3>
-          <p>มี "AI Avatar" หรือ "ตัวเพื่อนๆเองที่ถูกโคลน" มาพูดขายของแทนเพื่อนๆ โดยไม่ต้องเปิดกล้องเอง</p>
+          <div class="chapter-num">Workshop 2.3</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg> Auto Post Social Media — โพสอัตโนมัติ</h3>
+          <p>ต่อระบบให้โพสวิดิโอลง Social Media ให้อัตโนมัติ ไม่ต้องนั่งลงเอง</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 5</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.288L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.288Z"/></svg> FFmpeg — รวมทุกอย่างเข้าด้วยกัน</h3>
-          <p>เสียง, ภาพ, ข้อความ, เพลงพื้นหลัง จัดการครบในที่เดียว</p>
+          <div class="chapter-num">Workshop 3.1</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> AI Avatar เล่าเรื่อง</h3>
+          <p>ให้ AI Avatar มาพูดเล่าเรื่อง ขายของแทนเราเลย ไม่ต้องเปิดกล้องเอง</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 6</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg> First Demo — พาทำของจริง</h3>
-          <p>ไม่ใช่แค่อ่าน แต่จะมีผลงานจริงออกมาเลย</p>
+          <div class="chapter-num">Workshop 3.2</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Auto Subtitle — ใส่ซับไตเติ้ลอัตโนมัติ</h3>
+          <p>ใส่ซับไตเติ้ลลงคลิปอัตโนมัติ ดูง่าย เข้าถึงคนได้มากขึ้น</p>
         </div>
         <div class="timeline-item reveal">
-          <div class="chapter-num">Chapter 7</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg> Auto โพส Social Media</h3>
-          <p>ต่อ Buffer/Zapier ให้ระบบโพสให้อัตโนมัติ ฟรี!</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="chapter-num">Bonus</div>
-          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg> Claude Cowork Concept x n8n</h3>
-          <p>เพิ่มเติมภายหลัง เมื่อวิจัยเสร็จ</p>
+          <div class="chapter-num">Workshop 4</div>
+          <h3><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> AI Clone ตัวเอง — โคลนตัวเราด้วย HeyGen</h3>
+          <p>สร้าง "ตัวเราเวอร์ชัน AI" ที่พูดได้เหมือนจริง ใช้ขายของ ทำคอนเทนต์แทนเราได้เลย</p>
         </div>
       </div>
       <div class="timeline-note reveal">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-        ทยอยอัพเดทเนื้อหาแต่ละ Chapter ใน Google Drive &rarr; ครบทุก Chapter ภายใน 30 วัน
+        ได้รับเนื้อหาทั้งหมดทันทีหลังชำระเงิน &rarr; Ebook + วิดิโอสอน + Templates + n8n Workflows ครบทุก Workshop
       </div>
       <div class="text-center reveal">
         <a href="#" onclick="openCheckout(event)" class="btn">
-          สนใจ Preorder เลย
+          สนใจ ดูราคาเลย
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
@@ -1111,7 +1124,7 @@
         <div class="author-info">
           <h2 class="headline">แนะนำตัวก่อนนะ<span class="accent">ครับ</span></h2>
           <p class="subheadline">ดิว — เจ้าของเพจ Dewvikoe ดิววิโกะ ทำคอนเทนต์ AI ยอดรวม 600,000+ วิว และ 6,000+ แชร์ ครับ</p>
-          <p class="subheadline" style="margin-top: 12px;">เคยทำระบบผลิตวิดิโอ AI ให้ลูกค้าจริง ทำให้ตั้งแต่ต้นจนจบ ตอนนี้เอาทุกอย่างที่รู้มาเขียนเป็น Ebook ให้เพื่อนๆ ทำเองได้เลยครับ</p>
+          <p class="subheadline" style="margin-top: 12px;">เคยทำระบบผลิตวิดิโอ AI ให้ลูกค้าจริง ทำให้ตั้งแต่ต้นจนจบ ตอนนี้เอาทุกอย่างที่รู้มาทำเป็น Ebook + วิดิโอสอน ให้เพื่อนๆ ทำเองได้เลยครับ</p>
           <div style="margin-top: 24px;">
             <img src="img/ViewStat.png" alt="สถิติยอดวิว 600,000+ และ 6,000+ แชร์" loading="lazy" style="width: 100%; max-width: 480px; border-radius: var(--radius-sm); border: 1px solid var(--border);">
           </div>
@@ -1124,7 +1137,7 @@
   <section class="section" id="testimonials">
     <div class="container">
       <h2 class="headline text-center reveal">ระบบนี้<span class="accent">ทำอะไรได้บ้าง?</span></h2>
-      <p class="portfolio-subtitle reveal">ดิวเคยรับทำให้ลูกค้าจริงครับ ได้วิดิโอลงทุกวัน ทุกชั่วโมง ตามใจเลย<br>ตอนนี้เอาระบบเดียวกันมาเขียนเป็น Ebook ให้เพื่อนๆ ทำเองได้ครับ</p>
+      <p class="portfolio-subtitle reveal">ดิวเคยรับทำให้ลูกค้าจริงครับ ได้วิดิโอลงทุกวัน ทุกชั่วโมง ตามใจเลย<br>ตอนนี้เอาระบบเดียวกันมาทำเป็น Ebook + วิดิโอสอน ให้เพื่อนๆ ทำเองได้ครับ</p>
 
       <div class="portfolio-grid" style="justify-content: center;">
 
@@ -1222,10 +1235,10 @@
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
-            เนื้อหามาทีเดียวเลยไหม?
+            ได้เนื้อหาอะไรบ้าง?
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner">ทยอยอัพเดทแต่ละ Chapter ใน Google Drive เรื่อยๆ ครับ ครบทุก Chapter ภายใน 30 วัน</div></div>
+          <div class="faq-answer"><div class="faq-answer-inner">ได้ครบทันทีหลังชำระเงินครับ — Ebook ทุก Workshop, วิดิโอสอนทำจริง, Templates, n8n Workflows พร้อมใช้ และเข้า Discord Community ถามตอบกับดิวได้เลย</div></div>
         </div>
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
@@ -1237,7 +1250,7 @@
       </div>
       <div class="text-center reveal">
         <a href="#" onclick="openCheckout(event)" class="btn">
-          Preorder เลยครับ
+          ซื้อเลยครับ
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
@@ -1247,30 +1260,60 @@
   <!-- ===== PRICING ===== -->
   <section class="section" id="pricing">
     <div class="container">
-      <h2 class="headline text-center reveal">Preorder <span class="accent">ราคาเพื่อนๆ</span></h2>
+      <h2 class="headline text-center reveal">ลองคิดดูว่า<span class="accent">มูลค่าจริงๆ</span>เท่าไหร่</h2>
+      <div class="value-stack reveal" style="max-width: 600px; margin: 48px auto 40px;">
+        <div class="value-row" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-secondary); font-size: 0.95rem;">Ebook คู่มือสร้างโรงงานวิดิโอ 8 บท</span>
+          <span style="color: var(--text); font-weight: 700;">มูลค่า ฿1,500</span>
+        </div>
+        <div class="value-row" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-secondary); font-size: 0.95rem;">วิดิโอสอนทำจริงทุก Workshop</span>
+          <span style="color: var(--text); font-weight: 700;">มูลค่า ฿3,500</span>
+        </div>
+        <div class="value-row" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-secondary); font-size: 0.95rem;">Templates & n8n Workflows พร้อมใช้</span>
+          <span style="color: var(--text); font-weight: 700;">มูลค่า ฿2,500</span>
+        </div>
+        <div class="value-row" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-secondary); font-size: 0.95rem;">จ้างคนทำระบบแบบนี้ให้</span>
+          <span style="color: var(--text); font-weight: 700;">มูลค่า ฿15,000+</span>
+        </div>
+        <div class="value-row" style="display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-secondary); font-size: 0.95rem;">Discord Community ถามตอบกับดิว</span>
+          <span style="color: var(--text); font-weight: 700;">มูลค่า ฿500/เดือน</span>
+        </div>
+        <div class="value-row" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--green-dim); border-radius: 0 0 var(--radius-sm) var(--radius-sm);">
+          <span style="color: var(--text); font-weight: 800; font-size: 1.05rem;">รวมมูลค่าทั้งหมด</span>
+          <span style="color: var(--green); font-weight: 900; font-size: 1.15rem; text-decoration: line-through;">฿23,000+</span>
+        </div>
+      </div>
+
+      <h2 class="headline text-center reveal" style="margin-bottom: 8px;">แต่เพื่อนๆ ได้ทั้งหมดนี้ใน<span class="accent">ราคาเดียว</span></h2>
+
       <div class="pricing-grid">
         <div class="pricing-card reveal" style="width: 100%;">
           <div class="pricing-badge" style="font-size: 0.85rem; padding: 8px 16px; background: rgba(0,214,50,0.15); animation: pulse 2s infinite;">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.287 1.288L3 12l5.8 1.9a2 2 0 0 1 1.288 1.288L12 21l1.9-5.8a2 2 0 0 1 1.287-1.288L21 12l-5.8-1.9a2 2 0 0 1-1.288-1.288Z"/></svg>
-            ลดพิเศษ Preorder
+            ราคา Launch พิเศษ
           </div>
           <div class="price">
-            <span class="currency">฿</span>450
-            <span class="original-price">789 บาท</span>
+            <span class="currency">฿</span>789
           </div>
-          <div class="price-note">ประหยัด 339 บาท — ลดเกือบครึ่ง</div>
+          <div class="price-note">ราคาจะเพิ่มขึ้นเรื่อยๆ ทุก 2 สัปดาห์ หรือ เมื่อยอดขายครบทุก 100 คน</div>
           <ul class="pricing-features">
-            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ebook ครบทุก Chapter</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> อัพเดทเนื้อหาใน Google Drive</li>
-            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bonus: Claude x n8n</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ebook ครบทุก Workshop</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> วิดิโอสอนทำจริงทุก Workshop</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Templates & n8n Workflows พร้อมใช้</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Discord Community ถามตอบกับดิว</li>
+            <li><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> อัพเดทเนื้อหาตลอด ได้ทุกเวอร์ชัน</li>
           </ul>
           <a href="#" onclick="openCheckout(event)" class="btn">
-            Preorder 450 บาท
+            ซื้อเลย 789 บาท
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </a>
           <div class="limit-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
-            รับเพียง 30 คนแรก
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            ยิ่งซื้อเร็ว ยิ่งได้ราคาถูก — ราคาขึ้นเรื่อยๆ
           </div>
         </div>
       </div>
@@ -1280,7 +1323,7 @@
   <!-- ===== FINAL CTA ===== -->
   <section class="final-cta" id="final">
     <div class="container">
-      <h2 class="headline reveal">ซื้อได้เลย<span class="accent">ไม่ต้องกลัว</span></h2>
+      <h2 class="headline reveal">ลองแล้วไม่ใช่ <span class="accent">คืนเงินได้เลย</span></h2>
       <p class="body-text reveal">
         ดิวมั่นใจในคู่มือนี้ครับ ถ้าเพื่อนๆ ทำตามแล้วยังสร้างระบบไม่ได้<br>
         แค่ทัก DM มาบอก — <strong>ดิวคืนเงินให้เต็มจำนวน ไม่มีเงื่อนไข ไม่ถามเหตุผล</strong>
@@ -1288,10 +1331,10 @@
       <p class="body-text reveal" style="margin-top: 8px; color: var(--text-secondary); font-size: 0.95rem;">
         ดิวอยากให้เพื่อนๆ ลองทำจริงๆ โดยไม่ต้องเสี่ยงอะไรเลยครับ
       </p>
-      <p class="price-highlight reveal">Preorder วันนี้ 450 บาท <span style="text-decoration: line-through; color: var(--text-muted); font-weight: 400;">(ปกติ 789 บาท)</span></p>
-      <p class="limit-text reveal">รับเพียง 30 คนแรกเท่านั้น</p>
+      <p class="price-highlight reveal">วันนี้แค่ 789 บาท — ราคาจะเพิ่มขึ้นเรื่อยๆ</p>
+      <p class="limit-text reveal">ยิ่งซื้อเร็ว ยิ่งได้ราคาถูก</p>
       <a href="#" onclick="openCheckout(event)" class="btn reveal">
-        Preorder เลยครับ
+        ซื้อเลยครับ 789 บาท
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
@@ -1304,7 +1347,7 @@
   </footer>
 
   <script>
-    var STRIPE_URL = 'https://buy.stripe.com/8x25kw3Pm90w1wa8bA38400';
+    var STRIPE_URL = 'https://buy.stripe.com/cNi9AMdpW90w7Uy1Nc38401';
 
     function openCheckout(e) {
       e.preventDefault();
