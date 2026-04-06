@@ -30,7 +30,7 @@ Personal website / landing page + blog ของ Nutchanon Khongkaew (Dew)
 │   ├── img/                # รูปภาพของ blog posts
 │   ├── *.html              # Blog posts แต่ละบทความ
 │   └── fb-posts-data.json  # Facebook posts dataset
-├── ebook_factory_vdo/
+├── landing_vdo_factory/
 │   ├── index.html          # eBook/Video factory guide
 │   ├── img/                # รูปภาพ
 │   └── vdo/                # วิดีโอ
