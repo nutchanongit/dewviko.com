@@ -1,0 +1,3 @@
+[     322ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://ticktick.com/pricing:0
+[     358ms] [WARNING] [Meta Pixel] - You are sending a non-standard event 'loadPlatform'. The preferred way to send these events is using trackCustom. See 'https://developers.facebook.com/docs/ads-for-websites/pixel-events/#events' for more information. @ https://connect.facebook.net/en_US/fbevents.js:175
+[    1143ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://ticktick.com/pricing:0

@@ -1,0 +1,183 @@
+{
+  "name": "Workshop 4 — AI Clone (Voice + Face)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-4",
+      "name": "เริ่มต้น (Manual Trigger)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "เขียนสคริปสำหรับตัวผมเองพูดในวิดีโอ\nหัวข้อ: {{$json.topic}}\nความยาว 60 วินาที ภาษาไทย โทนเหมือนผมพูดเองตามปกติ\nโครงสร้าง: ทักทายสั้นๆ → เนื้อหาหลัก → สรุป → CTA\nเขียนเป็นประโยคสั้น เว้นจังหวะเป็นธรรมชาติ"
+            }
+          ]
+        }
+      },
+      "id": "openai-4",
+      "name": "AI เขียนสคริป",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/YOUR_CLONED_VOICE_ID",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.message.content }}"
+            },
+            {
+              "name": "model_id",
+              "value": "eleven_multilingual_v2"
+            },
+            {
+              "name": "voice_settings",
+              "value": "{\"stability\": 0.6, \"similarity_boost\": 0.85}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "elevenlabs-clone-4",
+      "name": "ElevenLabs (Cloned Voice)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [720, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_ELEVENLABS_CREDENTIAL_ID",
+          "name": "ElevenLabs API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.heygen.com/v2/video/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"video_inputs\": [\n    {\n      \"character\": {\n        \"type\": \"avatar\",\n        \"avatar_id\": \"YOUR_CUSTOM_AVATAR_ID\"\n      },\n      \"voice\": {\n        \"type\": \"audio\",\n        \"audio_url\": \"{{ $json.audio_url }}\"\n      }\n    }\n  ],\n  \"dimension\": {\n    \"width\": 1080,\n    \"height\": 1920\n  }\n}"
+      },
+      "id": "heygen-clone-4",
+      "name": "HeyGen (Avatar ตัวเอง + เสียง Clone)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [960, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_HEYGEN_CREDENTIAL_ID",
+          "name": "HeyGen API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 120,
+        "unit": "seconds"
+      },
+      "id": "wait-4",
+      "name": "รอ HeyGen render",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [1200, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.heygen.com/v1/video_status.get?video_id={{ $json.data.video_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "id": "check-status-4",
+      "name": "เช็คสถานะ + ดาวน์โหลด",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1440, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_HEYGEN_CREDENTIAL_ID",
+          "name": "HeyGen API Key"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "เริ่มต้น (Manual Trigger)": {
+      "main": [
+        [{ "node": "AI เขียนสคริป", "type": "main", "index": 0 }]
+      ]
+    },
+    "AI เขียนสคริป": {
+      "main": [
+        [{ "node": "ElevenLabs (Cloned Voice)", "type": "main", "index": 0 }]
+      ]
+    },
+    "ElevenLabs (Cloned Voice)": {
+      "main": [
+        [{ "node": "HeyGen (Avatar ตัวเอง + เสียง Clone)", "type": "main", "index": 0 }]
+      ]
+    },
+    "HeyGen (Avatar ตัวเอง + เสียง Clone)": {
+      "main": [
+        [{ "node": "รอ HeyGen render", "type": "main", "index": 0 }]
+      ]
+    },
+    "รอ HeyGen render": {
+      "main": [
+        [{ "node": "เช็คสถานะ + ดาวน์โหลด", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "notes": "Workshop 4: 6 nodes — Trigger → AI เขียนสคริป → ElevenLabs (Cloned Voice) สร้างเสียง → HeyGen (Avatar ตัวเอง) สร้างวิดีโอ → รอ render → เช็คสถานะ/ดาวน์โหลด\nต้องใส่: OpenAI API key, ElevenLabs API key (+ Cloned Voice ID), HeyGen API key (+ Custom Avatar ID)\nWorkshop นี้รวมทุก skill จาก Workshop 1-3 เข้าด้วยกัน"
+  }
+}

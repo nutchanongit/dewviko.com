@@ -1,0 +1,126 @@
+{
+  "name": "Workshop 3 — AI Avatar",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-3",
+      "name": "เริ่มต้น (Manual Trigger)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "เขียนสคริปสำหรับ AI Avatar พรีเซนเตอร์\nหัวข้อ: {{$json.topic}}\nความยาว 90 วินาที ภาษาไทย โทนสุภาพเป็นทางการ\nโครงสร้าง: ทักทาย → เนื้อหาหลัก 3 ข้อ → สรุป → CTA\nเขียนเป็นประโยคสั้นๆ กระชับ เพราะ Avatar จะพูดตามตัวอักษร"
+            }
+          ]
+        }
+      },
+      "id": "openai-3",
+      "name": "AI เขียนสคริป Avatar",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.heygen.com/v2/video/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"video_inputs\": [\n    {\n      \"character\": {\n        \"type\": \"avatar\",\n        \"avatar_id\": \"YOUR_AVATAR_ID\",\n        \"avatar_style\": \"normal\"\n      },\n      \"voice\": {\n        \"type\": \"text\",\n        \"input_text\": \"{{ $json.message.content }}\",\n        \"voice_id\": \"YOUR_VOICE_ID\"\n      }\n    }\n  ],\n  \"dimension\": {\n    \"width\": 1080,\n    \"height\": 1920\n  }\n}"
+      },
+      "id": "heygen-3",
+      "name": "HeyGen สร้าง Avatar Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [720, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_HEYGEN_CREDENTIAL_ID",
+          "name": "HeyGen API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 120,
+        "unit": "seconds"
+      },
+      "id": "wait-3",
+      "name": "รอ HeyGen render",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.heygen.com/v1/video_status.get?video_id={{ $json.data.video_id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "id": "check-status-3",
+      "name": "เช็คสถานะ + ดาวน์โหลด",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1200, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_HEYGEN_CREDENTIAL_ID",
+          "name": "HeyGen API Key"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "เริ่มต้น (Manual Trigger)": {
+      "main": [
+        [{ "node": "AI เขียนสคริป Avatar", "type": "main", "index": 0 }]
+      ]
+    },
+    "AI เขียนสคริป Avatar": {
+      "main": [
+        [{ "node": "HeyGen สร้าง Avatar Video", "type": "main", "index": 0 }]
+      ]
+    },
+    "HeyGen สร้าง Avatar Video": {
+      "main": [
+        [{ "node": "รอ HeyGen render", "type": "main", "index": 0 }]
+      ]
+    },
+    "รอ HeyGen render": {
+      "main": [
+        [{ "node": "เช็คสถานะ + ดาวน์โหลด", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "notes": "Workshop 3: 5 nodes — Trigger → AI เขียนสคริป → HeyGen สร้าง Avatar Video → รอ render → เช็คสถานะ/ดาวน์โหลด\nต้องใส่: OpenAI API key, HeyGen API key, Avatar ID, Voice ID"
+  }
+}

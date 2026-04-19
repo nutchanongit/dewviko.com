@@ -1,0 +1,130 @@
+{
+  "name": "Workshop 2 — Image to VDO ขายสินค้า",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-2",
+      "name": "เริ่มต้น (Manual Trigger)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "เขียนคำบรรยายสินค้าสำหรับวิดีโอ TikTok ความยาว 15 วินาที\nสินค้า: {{$json.product_name}}\nจุดเด่น: {{$json.selling_point}}\nโครงสร้าง: ปัญหาที่พบ → โชว์สินค้า → ประโยชน์ → CTA ซื้อเลย\nภาษาไทย โทนกันเอง สั้นกระชับ"
+            }
+          ]
+        }
+      },
+      "id": "openai-2",
+      "name": "AI เขียนคำบรรยาย",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.runwayml.com/v1/image_to_video",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-Runway-Version",
+              "value": "2024-11-06"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"gen4_turbo\",\n  \"promptImage\": \"{{ $json.image_url }}\",\n  \"promptText\": \"smooth zoom in on product, professional lighting, clean background\",\n  \"duration\": 5,\n  \"ratio\": \"720p\"\n}"
+      },
+      "id": "runway-2",
+      "name": "Runway Image-to-Video",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [720, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_RUNWAY_CREDENTIAL_ID",
+          "name": "Runway API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "wait-2",
+      "name": "รอ Runway render",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.runwayml.com/v1/tasks/{{ $json.id }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth"
+      },
+      "id": "check-status-2",
+      "name": "เช็คสถานะ + ดาวน์โหลด",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [1200, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_RUNWAY_CREDENTIAL_ID",
+          "name": "Runway API Key"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "เริ่มต้น (Manual Trigger)": {
+      "main": [
+        [{ "node": "AI เขียนคำบรรยาย", "type": "main", "index": 0 }]
+      ]
+    },
+    "AI เขียนคำบรรยาย": {
+      "main": [
+        [{ "node": "Runway Image-to-Video", "type": "main", "index": 0 }]
+      ]
+    },
+    "Runway Image-to-Video": {
+      "main": [
+        [{ "node": "รอ Runway render", "type": "main", "index": 0 }]
+      ]
+    },
+    "รอ Runway render": {
+      "main": [
+        [{ "node": "เช็คสถานะ + ดาวน์โหลด", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "notes": "Workshop 2: 5 nodes — Trigger → AI เขียนคำบรรยาย → Runway สร้างวิดีโอจากรูป → รอ render → เช็คสถานะ/ดาวน์โหลด\nต้องใส่: OpenAI API key, Runway API key, URL รูปสินค้า"
+  }
+}

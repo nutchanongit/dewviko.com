@@ -1,0 +1,11 @@
+[    3768ms] [WARNING] BASE_URL_ATTR "data-base-url" not found @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4865ms] [WARNING] Unknown global setting - ORA_IRC_CE_GJS_ENABLED @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4865ms] [WARNING] Unknown global setting - ORA_IRC_USER_TRACKING_ENABLE @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4865ms] [WARNING] Unknown global setting - ORA_IRC_NUMBER_OF_JOBS_TO_BE_LOADED_ON_MAP @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4865ms] [WARNING] Unknown global setting - ORA_IRC_FALLBACK_TO_SPRING @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4865ms] [WARNING] Unknown global setting - IRC_CE_USE_MODERN_TEMPLATE @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4866ms] [WARNING] Unknown global setting - ORA_IRC_EXWKR_CWKEXT_CITIZENSHIP_UPDATE_RECRUITER @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    4866ms] [WARNING] Unknown global setting - IRC_CE_AGENT_STARTER_MESSAGE @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1
+[    6901ms] TypeError: Cannot set properties of undefined (setting 'onclick')
+    at loadFrame (https://hdhl.fa.us6.oraclecloud.com/hcmUI/CandExpStatic/js/ce-custom.js?themeNumber=16&themeVersion=1&brandVersion=9:67:25)
+[   15232ms] [ERROR] undefined @ https://static.oracle.com/cdn/fa/oj-hcm-ce/2601.9.253360703/js/main-minimal.js:1

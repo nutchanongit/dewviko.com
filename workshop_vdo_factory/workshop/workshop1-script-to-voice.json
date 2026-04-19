@@ -1,0 +1,123 @@
+{
+  "name": "Workshop 1 — AI Script + Text to Voice",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger-1",
+      "name": "เริ่มต้น (Manual Trigger)",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o-mini",
+        "messages": {
+          "values": [
+            {
+              "content": "= เขียนสคริปวิดีโอแนะนำสินค้า \"{{$json.product_name}}\" ความยาว 60 วินาที ภาษาไทย โทนเป็นกันเอง\nโครงสร้าง: Hook → ปัญหา → แนะนำสินค้า → CTA\nห้ามใช้ภาษาทางการ ใช้ภาษาพูด"
+            }
+          ]
+        }
+      },
+      "id": "openai-1",
+      "name": "AI เขียนสคริป",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [480, 300],
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "text",
+              "value": "={{ $json.message.content }}"
+            },
+            {
+              "name": "model_id",
+              "value": "eleven_multilingual_v2"
+            },
+            {
+              "name": "voice_settings",
+              "value": "{\"stability\": 0.5, \"similarity_boost\": 0.75}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "elevenlabs-1",
+      "name": "ElevenLabs TTS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [720, 300],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YOUR_ELEVENLABS_CREDENTIAL_ID",
+          "name": "ElevenLabs API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileName": "script-voice-output.mp3",
+        "dataPropertyName": "data"
+      },
+      "id": "write-file-1",
+      "name": "บันทึกไฟล์ MP3",
+      "type": "n8n-nodes-base.writeBinaryFile",
+      "typeVersion": 1,
+      "position": [960, 300]
+    }
+  ],
+  "connections": {
+    "เริ่มต้น (Manual Trigger)": {
+      "main": [
+        [{ "node": "AI เขียนสคริป", "type": "main", "index": 0 }]
+      ]
+    },
+    "AI เขียนสคริป": {
+      "main": [
+        [{ "node": "ElevenLabs TTS", "type": "main", "index": 0 }]
+      ]
+    },
+    "ElevenLabs TTS": {
+      "main": [
+        [{ "node": "บันทึกไฟล์ MP3", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "meta": {
+    "notes": "Workshop 1: 4 nodes ง่ายๆ — Trigger → AI เขียนสคริป → ElevenLabs แปลงเสียง → บันทึกไฟล์\nต้องใส่: OpenAI API key, ElevenLabs API key, Voice ID"
+  }
+}

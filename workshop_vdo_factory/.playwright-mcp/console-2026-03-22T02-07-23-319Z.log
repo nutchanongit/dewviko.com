@@ -1,0 +1,13 @@
+[    1654ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:35042)
+    at rF (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:36075)
+    at https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:119567
+    at uC (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:124439)
+    at uS (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:116227)
+    at https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:116011
+    at uw (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:116019)
+    at uc (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:111394)
+    at uZ (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:134532)
+    at MessagePort.N (https://asana.com/_next/static/chunks/framework-e5fb0dd7fe072789.js?dpl=b5678cdc1794d34e5d6cb701a44d0d4b15227972a58fc2e6da7ce88ac094cc78363962643730643264353831323230303038353230353866:1:184020)
+[    3987ms] [ERROR] Attestation check for Attribution Reporting on https://www.facebook.com failed. @ https://asana.com/pricing:0
+[    7460ms] [ERROR] Attestation check for Attribution Reporting on https://www.facebook.com failed. @ https://asana.com/pricing:0
