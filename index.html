@@ -1190,10 +1190,9 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo">dew<span>viko</span></a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#products">Products</a></li>
         <li><a href="#blog">Blog</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="/about.html">About</a></li>
         <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
       <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">
@@ -1202,18 +1201,26 @@
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
+  <!-- HERO + SUBSCRIBE -->
+  <section class="hero" id="subscribe">
     <div class="container">
       <div class="hero-card">
         <div class="hero-card-inner">
           <div class="hero-text">
             <h1>AI ที่ใช้ได้จริง<br>แชร์ให้<span>เพื่อนๆ</span></h1>
-            <p>ผมดิว แชร์เรื่อง AI ที่ใช้ได้จริงในชีวิตและธุรกิจ — ตั้งแต่ Automation, AI Video ไปจนถึง Chatbot ลงมือทำเอง ใช้ได้จริง ไม่ใช่ทฤษฎี</p>
-            <div class="hero-btns">
-              <a href="#blog" class="btn btn-primary">อ่านบทความ &rarr;</a>
-              <a href="#about" class="btn btn-outline">รู้จักดิว</a>
-            </div>
+            <p>ผมดิว แชร์เรื่อง AI ที่ใช้ได้จริงในชีวิตและธุรกิจ — ส่งตรงถึงอีเมลทุกสัปดาห์</p>
+            <form class="subscribe-form sendfox-form" id="1yrxxy" action="https://sendfox.com/form/1yzk6w/1yrxxy" method="POST" data-async="true" data-recaptcha="false">
+              <input
+                type="email"
+                name="email"
+                placeholder="อีเมลของคุณ"
+                required
+                autocomplete="email"
+              />
+              <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
+              <button type="submit">สมัครรับบทความฟรี</button>
+            </form>
+            <div class="subscribe-note">ไม่สแปม ยกเลิกได้ทุกเมื่อ</div>
           </div>
           <div class="hero-checklist">
             <div class="hero-checklist-item">บทความ AI ใหม่ทุกสัปดาห์</div>
@@ -1222,73 +1229,44 @@
           </div>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="landing_vdo_factory/img/myimg2.png" alt="Dew — dewviko">
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-number">5+</div>
-          <div class="hero-stat-label">ประเภทธุรกิจที่ Consult</div>
-        </div>
-        <div>
-          <div class="hero-stat-number">AI</div>
-          <div class="hero-stat-label">Tools ใช้ได้จริง</div>
-        </div>
-        <div>
-          <div class="hero-stat-number">100%</div>
-          <div class="hero-stat-label">ลงมือทำเอง</div>
-        </div>
-      </div>
     </div>
   </section>
 
-  <!-- SUBSCRIBE -->
-  <section class="section subscribe" id="subscribe">
+  <!-- BLOG -->
+  <section class="section blog" id="blog">
     <div class="container">
-      <div class="subscribe-card">
-        <h2>รับบทความ AI ใหม่ทุกสัปดาห์</h2>
-        <p>ส่งตรงถึงอีเมล ไม่พลาดเรื่อง AI ที่เอาไปใช้ได้จริง</p>
-        <form class="subscribe-form sendfox-form" id="1yrxxy" action="https://sendfox.com/form/1yzk6w/1yrxxy" method="POST" data-async="true" data-recaptcha="false">
-          <input
-            type="email"
-            name="email"
-            placeholder="อีเมลของคุณ"
-            required
-            autocomplete="email"
-          />
-          <div style="position:absolute;left:-5000px;" aria-hidden="true"><input type="text" name="a_password" tabindex="-1" value="" autocomplete="off" /></div>
-          <button type="submit">สมัครรับบทความ</button>
-        </form>
-        <div class="subscribe-note">ไม่สแปม ยกเลิกได้ทุกเมื่อ</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section about" id="about">
-    <div class="container">
-      <div class="about-content">
-        <div class="section-label">About</div>
-        <h2>ดิวเป็นใคร</h2>
-        <p>ผมดิว รัน One-person business ทำทุกอย่างเองตั้งแต่ทำคอนเทนท์ สร้างโปรดักท์ ไปจนถึงรับ Consult ให้ธุรกิจ</p>
-
-        <p><strong>Content Creator</strong> ทำคอนเทนท์แชร์ความรู้เรื่อง AI ที่ใช้ได้จริงกับธุรกิจ มีคนแชร์รวมกว่า 7,000 ครั้ง</p>
-
-        <p><strong>Digital Products</strong> เขียน Ebook คู่มือการสร้างโรงงานผลิตวิดิโอด้วย n8n และ Build Micro SaaS เช่น Coach Lee Calorie Tracking</p>
-
-        <p><strong>AI Consult & Service</strong> ให้คำปรึกษาและทำระบบ AI ให้ SME มามากกว่า 5 บริษัท ทั้งด้าน Marketing และ Operations</p>
-
-        <div class="about-tools">
-          <span class="tool-tag">Claude</span>
-          <span class="tool-tag">n8n</span>
-          <span class="tool-tag">HeyGen</span>
-          <span class="tool-tag">Make</span>
-          <span class="tool-tag">Automation</span>
-          <span class="tool-tag">AI Chatbot</span>
+      <div class="blog-header">
+        <div>
+          <div class="section-label">Blog</div>
+          <h2 class="section-title">บทความล่าสุด</h2>
         </div>
+        <a href="blog/" class="btn btn-outline">ดูทั้งหมด &rarr;</a>
       </div>
-      <div class="about-image" style="display:flex;justify-content:center;">
-        <img src="landing_vdo_factory/img/myimg.png" alt="Dew profile" style="width:320px;max-width:100%;border-radius:16px;filter:drop-shadow(0 16px 32px rgba(0,0,0,0.08));">
+      <div class="blog-grid">
+        <a href="blog/cowork-video-condo.html" class="blog-card">
+          <img src="blog/img/cowork-video-condo.jpg" alt="Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ" class="blog-card-thumb">
+          <div class="blog-card-body">
+            <div class="blog-card-date">22 มีนาคม 2026</div>
+            <h3>ใช้ Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ Ken Burns สวยๆ</h3>
+            <p>ลองเอารูปทรัพย์จากเว็บขายคอนโดมาสร้างวิดิโอด้วย Cowork + FFmpeg</p>
+          </div>
+        </a>
+        <a href="blog/ai-video-factory.html" class="blog-card">
+          <img src="blog/img/ai-video-factory.jpg" alt="โรงงานผลิตวิดิโอ AI" class="blog-card-thumb">
+          <div class="blog-card-body">
+            <div class="blog-card-date">10 มีนาคม 2026</div>
+            <h3>พาชมโรงงานผลิตวิดิโอ AI ที่ผมสร้าง</h3>
+            <p>ใช้ n8n เป็นสายพาน + HeyGen, Kling AI ผลิตวิดิโออัตโนมัติ</p>
+          </div>
+        </a>
+        <a href="blog/claude-browser-mcp.html" class="blog-card">
+          <img src="blog/img/claude-browser-mcp.jpg" alt="Claude Browser MCP" class="blog-card-thumb">
+          <div class="blog-card-body">
+            <div class="blog-card-date">8 มีนาคม 2026</div>
+            <h3>เอา Claude ไปเล่น Google แทนเรา — Browser MCP</h3>
+            <p>ให้ Claude Code เปิดเว็บเช็คราคาคู่แข่ง สรุปเป็นตารางให้เอง</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -1346,45 +1324,6 @@
     </div>
   </section>
 
-  <!-- BLOG -->
-  <section class="section blog" id="blog">
-    <div class="container">
-      <div class="blog-header">
-        <div>
-          <div class="section-label">Blog</div>
-          <h2 class="section-title">บทความล่าสุด</h2>
-        </div>
-        <a href="blog/" class="btn btn-outline">ดูทั้งหมด &rarr;</a>
-      </div>
-      <div class="blog-grid">
-        <a href="blog/cowork-video-condo.html" class="blog-card">
-          <img src="blog/img/cowork-video-condo.jpg" alt="Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ" class="blog-card-thumb">
-          <div class="blog-card-body">
-            <div class="blog-card-date">22 มีนาคม 2026</div>
-            <h3>ใช้ Claude Cowork เปลี่ยนรูปคอนโดเป็นวิดิโอ Ken Burns สวยๆ</h3>
-            <p>ลองเอารูปทรัพย์จากเว็บขายคอนโดมาสร้างวิดิโอด้วย Cowork + FFmpeg</p>
-          </div>
-        </a>
-        <a href="blog/ai-video-factory.html" class="blog-card">
-          <img src="blog/img/ai-video-factory.jpg" alt="โรงงานผลิตวิดิโอ AI" class="blog-card-thumb">
-          <div class="blog-card-body">
-            <div class="blog-card-date">10 มีนาคม 2026</div>
-            <h3>พาชมโรงงานผลิตวิดิโอ AI ที่ผมสร้าง</h3>
-            <p>ใช้ n8n เป็นสายพาน + HeyGen, Kling AI ผลิตวิดิโออัตโนมัติ</p>
-          </div>
-        </a>
-        <a href="blog/claude-browser-mcp.html" class="blog-card">
-          <img src="blog/img/claude-browser-mcp.jpg" alt="Claude Browser MCP" class="blog-card-thumb">
-          <div class="blog-card-body">
-            <div class="blog-card-date">8 มีนาคม 2026</div>
-            <h3>เอา Claude ไปเล่น Google แทนเรา — Browser MCP</h3>
-            <p>ให้ Claude Code เปิดเว็บเช็คราคาคู่แข่ง สรุปเป็นตารางให้เอง</p>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- CONTACT -->
   <section class="section contact" id="contact">
     <div class="container">
@@ -1429,10 +1368,9 @@
       </div>
       <div class="footer-links">
         <h4>Navigation</h4>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#products">Products</a>
         <a href="#blog">Blog</a>
+        <a href="#products">Products</a>
+        <a href="/about.html">About</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="footer-links">

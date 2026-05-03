@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — dewviko | ดิว Nutchanon Khongkaew</title>
+  <meta name="description" content="ดิวเป็นใคร — รัน One-person business แชร์เรื่อง AI ที่ใช้ได้จริงกับธุรกิจ Content Creator, Ebook, AI Consult & Service ให้ SME">
+  <meta name="author" content="dewviko — Nutchanon Khongkaew">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dewviko.com/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="About — dewviko">
+  <meta property="og:description" content="ดิวเป็นใคร — แชร์เรื่อง AI ที่ใช้ได้จริงกับธุรกิจ">
+  <meta property="og:url" content="https://dewviko.com/about.html">
+  <meta property="og:site_name" content="dewviko">
+  <meta property="og:locale" content="th_TH">
+  <meta property="og:image" content="https://dewviko.com/og-image.png">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3E36ECZ567"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3E36ECZ567');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2D6B2D;
+      --green-light: #3A8A3A;
+      --mint: #EEFBEE;
+      --white: #FFFFFF;
+      --off-white: #F8F9FA;
+      --black: #000000;
+      --dark-gray: #333333;
+      --med-gray: #6B7280;
+      --light-gray: #E5E7EB;
+      --font: 'Noto Sans Thai', sans-serif;
+      --radius: 12px;
+      --max-w: 1100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--dark-gray);
+      background: var(--white);
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    .nav-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: var(--black);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--green); }
+
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+
+    .nav-links a {
+      color: var(--med-gray);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-cta {
+      background: var(--green);
+      color: var(--white) !important;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    .nav-cta:hover { background: var(--green-light); }
+
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle svg { width: 24px; height: 24px; color: var(--dark-gray); }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    /* ===== HEADER ===== */
+    .about-header {
+      padding: 160px 24px 80px;
+      background: var(--mint);
+    }
+
+    .about-header .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-header .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .about-header h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.15;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .about-header h1 span { color: var(--green); }
+
+    .about-header .lead {
+      font-size: 1.1rem;
+      color: var(--dark-gray);
+      line-height: 1.8;
+    }
+
+    .about-header-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .about-header-image img {
+      width: 360px;
+      max-width: 100%;
+      border-radius: 20px;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.12));
+    }
+
+    /* ===== BIO ===== */
+    .bio {
+      padding: 100px 24px;
+      background: var(--white);
+    }
+
+    .bio .container {
+      max-width: 760px;
+    }
+
+    .bio-block {
+      margin-bottom: 56px;
+    }
+
+    .bio-block:last-child { margin-bottom: 0; }
+
+    .bio-block h2 {
+      font-size: clamp(1.4rem, 3vw, 1.75rem);
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+
+    .bio-block p {
+      font-size: 1.05rem;
+      color: var(--dark-gray);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+
+    .bio-block p:last-child { margin-bottom: 0; }
+
+    .bio-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .tool-tag {
+      background: var(--white);
+      color: var(--green);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 2px solid var(--green);
+    }
+
+    /* ===== CTA ===== */
+    .about-cta {
+      padding: 100px 24px;
+      background: var(--mint);
+      text-align: center;
+    }
+
+    .about-cta h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .about-cta p {
+      color: var(--dark-gray);
+      margin-bottom: 36px;
+      font-size: 1.05rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--dark-gray);
+      transform: translateY(-2px);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 24px 32px;
+    }
+
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+
+    .footer-brand { max-width: 300px; }
+
+    .footer-logo {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .footer-logo span { color: var(--green); }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .footer-links h4 {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .footer-links a {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--green); }
+
+    .footer-bottom {
+      max-width: var(--max-w);
+      margin: 40px auto 0;
+      padding: 20px 0 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .footer-social a:hover {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .footer-social svg { width: 18px; height: 18px; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--light-gray);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+      }
+
+      .about-header { padding: 120px 20px 60px; }
+      .about-header .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .about-header-image { order: -1; }
+      .about-header-image img { width: 240px; }
+
+      .bio { padding: 70px 20px; }
+      .footer .container { flex-direction: column; }
+    }
+  </style>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nutchanon Khongkaew",
+    "alternateName": "Dew",
+    "url": "https://dewviko.com/about.html",
+    "jobTitle": "AI Consultant & Educator",
+    "description": "AI Consultant & Educator — แชร์เรื่อง AI ที่ใช้ได้จริงกับธุรกิจ",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61584440807076"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">dew<span>viko</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#products">Products</a></li>
+        <li><a href="/about.html">About</a></li>
+        <li><a href="/#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('active')" aria-label="Menu">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section class="about-header">
+    <div class="container">
+      <div>
+        <div class="section-label">About</div>
+        <h1>สวัสดีครับ<br>ผม<span>ดิว</span></h1>
+        <p class="lead">รัน One-person business แชร์เรื่อง AI ที่ใช้ได้จริงกับธุรกิจ ทั้งทำคอนเทนท์ สร้างโปรดักท์ และให้คำปรึกษา</p>
+      </div>
+      <div class="about-header-image">
+        <img src="landing_vdo_factory/img/myimg.png" alt="Dew — Nutchanon Khongkaew">
+      </div>
+    </div>
+  </section>
+
+  <!-- BIO -->
+  <section class="bio">
+    <div class="container">
+
+      <div class="bio-block">
+        <h2>Content Creator</h2>
+        <p>ทำคอนเทนท์แชร์ความรู้เรื่อง AI ที่ใช้ได้จริงกับธุรกิจ มีคนแชร์รวมกว่า 7,000 ครั้ง เน้นเคสจริง ลงมือทำเอง ทำตามได้</p>
+      </div>
+
+      <div class="bio-block">
+        <h2>Digital Products</h2>
+        <p>เขียน Ebook คู่มือสร้างโรงงานผลิตวิดิโอด้วย n8n และ Build Micro SaaS เช่น Coach Lee Calorie Tracking — สร้างของที่เอาไปใช้ได้จริง ไม่ใช่แค่ทฤษฎี</p>
+      </div>
+
+      <div class="bio-block">
+        <h2>AI Consult & Service</h2>
+        <p>ให้คำปรึกษาและทำระบบ AI ให้ SME มามากกว่า 5 บริษัท ทั้งด้าน Marketing และ Operations ตั้งแต่ AI Video Factory, Automation, Chatbot ไปจนถึง Data Pipeline</p>
+      </div>
+
+      <div class="bio-block">
+        <h2>Tools ที่ผมใช้บ่อย</h2>
+        <div class="bio-tools">
+          <span class="tool-tag">Claude</span>
+          <span class="tool-tag">n8n</span>
+          <span class="tool-tag">HeyGen</span>
+          <span class="tool-tag">Make</span>
+          <span class="tool-tag">Automation</span>
+          <span class="tool-tag">AI Chatbot</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <div class="container">
+      <h2>อ่านบทความ AI ใหม่ทุกสัปดาห์</h2>
+      <p>ส่งตรงถึงอีเมล ไม่พลาดเรื่อง AI ที่เอาไปใช้ได้จริง</p>
+      <a href="/#subscribe" class="btn btn-primary">สมัครรับบทความฟรี &rarr;</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <div class="footer-logo">dew<span>viko</span></div>
+        <p>AI Consultant & Educator — ช่วยธุรกิจเพื่อนๆ ใช้ AI ได้จริง</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/profile.php?id=61584440807076" target="_blank" aria-label="Facebook">
+            <svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>Navigation</h4>
+        <a href="/#blog">Blog</a>
+        <a href="/#products">Products</a>
+        <a href="/about.html">About</a>
+        <a href="/#contact">Contact</a>
+      </div>
+      <div class="footer-links">
+        <h4>Products</h4>
+        <a href="/landing_vdo_factory/">AI Video Factory Ebook</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 dewviko. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
